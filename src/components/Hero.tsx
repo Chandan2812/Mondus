@@ -54,7 +54,7 @@ export default function Hero() {
       </div>
 
       {/* Right Form */}
-      <div className="relative z-10 w-full sm:w-1/3 lg:w-1/3 bg-[#121212]/90 p-8 rounded-lg">
+      <div className="relative z-10 w-full sm:w-1/3 lg:w-1/3 bg-[#121212]/90 dark: p-8 rounded-lg">
         {/* Toggle Buttons */}
         <div className="flex mb-6">
           <button

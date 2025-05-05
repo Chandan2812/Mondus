@@ -99,14 +99,14 @@ const FindYourPartner: React.FC = () => {
 
   return (
     <section className="relative custom-gradient-lines">
-      <div className="bg-black text-white py-12 px-4 md:px-16 relative">
+      <div className="py-12 px-4 md:px-16 relative bg-white dark:bg-black text-black dark:text-white">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
           {/* Left Text */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-light mb-6">
+            <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100">
               FIND YOUR PARTNER
             </h2>
-            <p className="text-gray-300 mb-6 max-w-md">
+            <p className="text-gray-600 mb-6 max-w-md dark:text-gray-400">
               Our team is highly experienced and knowledgeable across all
               aspects of the real estate industry. We are ready to answer your
               questions in over 30 languages. Find the perfect match for your
@@ -115,18 +115,18 @@ const FindYourPartner: React.FC = () => {
             </p>
 
             <div className="flex flex-wrap gap-4 mb-6">
-              <select className="bg-black border border-gray-600 px-4 py-2 w-[160px]">
+              <select className="bg-white border border-gray-600 px-4 py-2 w-[160px] dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                 <option>Specialization</option>
               </select>
-              <select className="bg-black border border-gray-600 px-4 py-2 w-[160px]">
+              <select className="bg-white border border-gray-600 px-4 py-2 w-[160px] dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                 <option>Language</option>
               </select>
-              <button className="border border-gray-600 px-4 py-2 text-lg">
+              <button className="border border-gray-600 px-4 py-2 text-lg dark:border-gray-500 dark:text-white">
                 &#8635;
               </button>
             </div>
 
-            <button className="border border-orange-400 text-orange-400 px-6 py-3 hover:bg-orange-400 hover:text-black transition">
+            <button className="border border-[var(--primary-color)] text-[var(--primary-color)]  px-6 py-3 hover:opacity-70 hover:text-black transition dark:border-[var(--primary-color)] dark:text-[primary-color] hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] dark:hover:text-black">
               SHOW ALL
             </button>
           </div>
@@ -136,13 +136,13 @@ const FindYourPartner: React.FC = () => {
             {/* Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-2 sm:left-0 z-40 bg-black border border-white px-3 py-2 text-white hover:bg-white hover:text-black transition"
+              className="absolute left-2 sm:left-0 z-40 bg-white border border-black px-3 py-2 text-black hover:bg-black hover:text-white transition dark:bg-black dark:border-white dark:text-white"
             >
               ←
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-2 sm:right-0 z-40 bg-black border border-white px-3 py-2 text-white hover:bg-white hover:text-black transition"
+              className="absolute right-2 sm:right-0 z-40 bg-white border border-black px-3 py-2 text-black hover:bg-black hover:text-white transition dark:bg-black dark:border-white dark:text-white"
             >
               →
             </button>
@@ -160,11 +160,19 @@ const FindYourPartner: React.FC = () => {
                     alt={member.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-0 bg-black bg-opacity-80 p-4 w-full text-left">
-                    <h3 className="text-lg font-semibold">{member.name}</h3>
-                    <p className="text-sm text-gray-300">{member.role}</p>
-                    <p className="text-sm text-gray-400">{member.experience}</p>
-                    <p className="text-sm text-gray-400">{member.languages}</p>
+                  <div className="absolute bottom-0 bg-black bg-opacity-80 p-4 w-full text-left dark:bg-gray-900 dark:bg-opacity-80">
+                    <h3 className="text-lg font-semibold text-white dark:text-gray-100">
+                      {member.name}
+                    </h3>
+                    <p className="text-sm text-gray-300 dark:text-gray-400">
+                      {member.role}
+                    </p>
+                    <p className="text-sm text-gray-400 dark:text-gray-500">
+                      {member.experience}
+                    </p>
+                    <p className="text-sm text-gray-400 dark:text-gray-500">
+                      {member.languages}
+                    </p>
                   </div>
                 </div>
               ))}
