@@ -1,5 +1,9 @@
-function Landing() {
-  return <div>Landing</div>;
-}
+import Navbar from "../components/Nav";
 
-export default Landing;
+export const Landing = () => {
+  return (
+    <div>
+      <Navbar />
+    </div>
+  );
+};
