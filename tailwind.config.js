@@ -1,6 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+module.exports = {
+  darkMode: "class", // ✅ this is the key setting
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}", // make sure all relevant paths are included
+  ],
   theme: {
     extend: {
       fontFamily: {
