@@ -109,7 +109,7 @@ const FindYourPartner: React.FC = () => {
             Our team is highly experienced and knowledgeable across all aspects
             of the real estate industry. We are ready to answer your questions
             in over 30 languages. Find the perfect match for your needs and
-            embark on your real estate journey with AX professionals.
+            embark on your real estate journey with MONDUS professionals.
           </p>
 
           <div className="flex flex-wrap gap-4 mb-6">
