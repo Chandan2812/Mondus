@@ -98,78 +98,81 @@ const FindYourPartner: React.FC = () => {
   };
 
   return (
-    <div className="bg-black text-white py-12 px-4 md:px-16 relative">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
-        {/* Left Text */}
-        <div>
-          <h2 className="text-3xl md:text-4xl font-light mb-6">
-            FIND YOUR PARTNER
-          </h2>
-          <p className="text-gray-300 mb-6 max-w-md">
-            Our team is highly experienced and knowledgeable across all aspects
-            of the real estate industry. We are ready to answer your questions
-            in over 30 languages. Find the perfect match for your needs and
-            embark on your real estate journey with MONDUS professionals.
-          </p>
+    <section className="relative custom-gradient-lines">
+      <div className="bg-black text-white py-12 px-4 md:px-16 relative">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
+          {/* Left Text */}
+          <div>
+            <h2 className="text-3xl md:text-4xl font-light mb-6">
+              FIND YOUR PARTNER
+            </h2>
+            <p className="text-gray-300 mb-6 max-w-md">
+              Our team is highly experienced and knowledgeable across all
+              aspects of the real estate industry. We are ready to answer your
+              questions in over 30 languages. Find the perfect match for your
+              needs and embark on your real estate journey with MONDUS
+              professionals.
+            </p>
 
-          <div className="flex flex-wrap gap-4 mb-6">
-            <select className="bg-black border border-gray-600 px-4 py-2 w-[160px]">
-              <option>Specialization</option>
-            </select>
-            <select className="bg-black border border-gray-600 px-4 py-2 w-[160px]">
-              <option>Language</option>
-            </select>
-            <button className="border border-gray-600 px-4 py-2 text-lg">
-              &#8635;
+            <div className="flex flex-wrap gap-4 mb-6">
+              <select className="bg-black border border-gray-600 px-4 py-2 w-[160px]">
+                <option>Specialization</option>
+              </select>
+              <select className="bg-black border border-gray-600 px-4 py-2 w-[160px]">
+                <option>Language</option>
+              </select>
+              <button className="border border-gray-600 px-4 py-2 text-lg">
+                &#8635;
+              </button>
+            </div>
+
+            <button className="border border-orange-400 text-orange-400 px-6 py-3 hover:bg-orange-400 hover:text-black transition">
+              SHOW ALL
             </button>
           </div>
 
-          <button className="border border-orange-400 text-orange-400 px-6 py-3 hover:bg-orange-400 hover:text-black transition">
-            SHOW ALL
-          </button>
-        </div>
+          {/* Right Slider Section */}
+          <div className="relative w-full flex justify-center items-center h-[500px]">
+            {/* Arrows */}
+            <button
+              onClick={handlePrev}
+              className="absolute left-2 sm:left-0 z-40 bg-black border border-white px-3 py-2 text-white hover:bg-white hover:text-black transition"
+            >
+              ←
+            </button>
+            <button
+              onClick={handleNext}
+              className="absolute right-2 sm:right-0 z-40 bg-black border border-white px-3 py-2 text-white hover:bg-white hover:text-black transition"
+            >
+              →
+            </button>
 
-        {/* Right Slider Section */}
-        <div className="relative w-full flex justify-center items-center h-[500px]">
-          {/* Arrows */}
-          <button
-            onClick={handlePrev}
-            className="absolute left-2 sm:left-0 z-40 bg-black border border-white px-3 py-2 text-white hover:bg-white hover:text-black transition"
-          >
-            ←
-          </button>
-          <button
-            onClick={handleNext}
-            className="absolute right-2 sm:right-0 z-40 bg-black border border-white px-3 py-2 text-white hover:bg-white hover:text-black transition"
-          >
-            →
-          </button>
-
-          {/* Slides Container */}
-          <div className="relative w-full max-w-[1200px] mx-auto overflow-hidden h-[500px]">
-            {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                style={getSlideStyle(index)}
-                className="rounded overflow-hidden shadow-lg transition-all duration-500 ease-in-out"
-              >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-0 bg-black bg-opacity-80 p-4 w-full text-left">
-                  <h3 className="text-lg font-semibold">{member.name}</h3>
-                  <p className="text-sm text-gray-300">{member.role}</p>
-                  <p className="text-sm text-gray-400">{member.experience}</p>
-                  <p className="text-sm text-gray-400">{member.languages}</p>
+            {/* Slides Container */}
+            <div className="relative w-full max-w-[1200px] mx-auto overflow-hidden h-[500px]">
+              {teamMembers.map((member, index) => (
+                <div
+                  key={index}
+                  style={getSlideStyle(index)}
+                  className="rounded overflow-hidden shadow-lg transition-all duration-500 ease-in-out"
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-0 bg-black bg-opacity-80 p-4 w-full text-left">
+                    <h3 className="text-lg font-semibold">{member.name}</h3>
+                    <p className="text-sm text-gray-300">{member.role}</p>
+                    <p className="text-sm text-gray-400">{member.experience}</p>
+                    <p className="text-sm text-gray-400">{member.languages}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
