@@ -1,4 +1,5 @@
 import RealEstateExperts from "../components/expert";
+import FindYourPartner from "../components/FindYourPartner";
 import Navbar from "../components/Nav";
 
 export const Landing = () => {
@@ -6,6 +7,7 @@ export const Landing = () => {
     <div>
       <Navbar />
       <RealEstateExperts />
+      <FindYourPartner />
     </div>
   );
 };
