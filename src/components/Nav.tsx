@@ -3,15 +3,11 @@ import { FiMenu, FiBookmark, FiPlus, FiSun, FiMoon } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import logo from "../assets/mondus.png";
 
-declare global {
-  interface Window {
-    googleTranslateElementInit: () => void;
-    google: any;
-  }
-}
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [activeItem, setActiveItem] = useState<string | null>(null);
+
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme")
       ? localStorage.getItem("theme") === "dark"
@@ -27,31 +23,6 @@ const Navbar = () => {
       localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
-
-  useEffect(() => {
-    const googleTranslateElementInit = () => {
-      new window.google.translate.TranslateElement(
-        {
-          pageLanguage: "en",
-          autoDisplay: false,
-        },
-        "google_translate_element"
-      );
-    };
-
-    const loadGoogleTranslateScript = () => {
-      if (!window.googleTranslateElementInit) {
-        const script = document.createElement("script");
-        script.src =
-          "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-        script.async = true;
-        document.body.appendChild(script);
-        window.googleTranslateElementInit = googleTranslateElementInit;
-      }
-    };
-
-    loadGoogleTranslateScript();
-  }, []);
 
   const navItems = [
     "Buy",
@@ -93,24 +64,35 @@ const Navbar = () => {
               <div className="h-20 pr-6 mr-6 border-r border-gray-600 dark:border-gray-400 flex items-center">
                 <img src={logo} alt="AX Logo" className="h-24" />
               </div>
-              {navItems.map((item, index) => (
-                <a
-                  key={index}
-                  href="#"
-                  className="text-sm font-light text-inherit hover:text-[#ce9c81] transition-colors"
-                >
-                  {item}
-                </a>
-              ))}
+              <div className="flex items-center gap-8">
+                {navItems.map((item, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    onClick={() => setActiveItem(item)}
+                    className={`relative pb-2 text-sm text-inherit transition-colors hover:text-[var(--primary-color)] ${
+                      activeItem === item ? "font-light text-md" : ""
+                    }`}
+                  >
+                    {item}
+                  </a>
+                ))}
+              </div>
             </div>
 
             {/* Right section */}
             <div className="flex items-center space-x-6">
-              <FaWhatsapp className="text-[#ce9c81] text-xl" />
-              <a href="#" className="text-sm text-[#ce9c81] hover:underline">
+              <FaWhatsapp className="text-[var(--primary-color)] text-2xl cursor-pointer font-light" />
+              <a
+                href="#"
+                className="text-sm text-[var(--primary-color)] hover:underline font-light"
+              >
                 FOLLOW US
               </a>
-              <a href="#" className="text-sm text-[#ce9c81] hover:underline">
+              <a
+                href="#"
+                className="text-sm text-[var(--primary-color)] hover:underline font-light"
+              >
                 CALL US
               </a>
               <div className="w-px h-6 bg-gray-400 dark:bg-gray-600"></div>
@@ -135,7 +117,7 @@ const Navbar = () => {
             <a
               key={index}
               href="#"
-              className="block text-inherit hover:text-[#ce9c81] text-base transition-colors"
+              className="block text-inherit hover:text-[var(--primary-color)] text-base transition-colors"
             >
               {item}
             </a>
