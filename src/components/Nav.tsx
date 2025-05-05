@@ -106,7 +106,6 @@ const Navbar = () => {
 
             {/* Right section */}
             <div className="flex items-center space-x-6">
-              <div id="google_translate_element" className="text-sm" />
               <FaWhatsapp className="text-[#ce9c81] text-xl" />
               <a href="#" className="text-sm text-[#ce9c81] hover:underline">
                 FOLLOW US
@@ -132,7 +131,6 @@ const Navbar = () => {
       {/* Mobile dropdown menu */}
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-black px-4 py-2 space-y-2">
-          <div id="google_translate_element" className="mb-2" />
           {navItems.map((item, index) => (
             <a
               key={index}
