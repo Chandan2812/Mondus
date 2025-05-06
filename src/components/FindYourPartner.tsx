@@ -114,11 +114,11 @@ const FindYourPartner: React.FC = () => {
               professionals.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-6">
-              <select className="bg-white border border-gray-600 px-4 py-2 w-[160px] dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+            <div className="flex flex-wrap gap-2 md:gap-4 mb-6">
+              <select className="bg-white border border-gray-600 px-2 md:px-4 py-2 w-[140px] md:w-[160px] dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                 <option>Specialization</option>
               </select>
-              <select className="bg-white border border-gray-600 px-4 py-2 w-[160px] dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+              <select className="bg-white border border-gray-600 px-4 py-2 w-[140px] md:w-[160px] dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                 <option>Language</option>
               </select>
               <button className="border border-gray-600 px-4 py-2 text-lg dark:border-gray-500 dark:text-white">

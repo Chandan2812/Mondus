@@ -98,7 +98,7 @@ const RealStateInsights = () => {
 
   return (
     <div className="px-4 py-10 bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
-      <h2 className="text-center text-3xl font-thin">
+      <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100 text-center">
         EXPERT REAL ESTATE INSIGHTS
       </h2>
       <p className="text-center text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mt-2">

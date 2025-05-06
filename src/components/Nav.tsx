@@ -39,7 +39,6 @@ const Navbar = () => {
     "Chronicle ",
     "Catalogs",
     "Agents",
-    "The AX Way",
   ];
 
   useEffect(() => {
@@ -148,10 +147,10 @@ const Navbar = () => {
 
         {/* Mobile dropdown menu */}
         {isOpen && (
-          <div className="md:hidden fixed inset-0 z-[9999] bg-white dark:bg-black flex flex-col px-6 pb-4">
+          <div className="md:hidden fixed inset-0 z-[9999] bg-white dark:bg-black flex flex-col pl-2 pr-5 pb-4">
             {/* Header with logo and close */}
-            <div className="flex justify-between items-center mb-6">
-              <img src={logo} alt="Mondus Logo" className="w-36" />
+            <div className="flex justify-between items-center">
+              <img src={logo} alt="Mondus Logo" className="w-48" />
               <button
                 onClick={() => setIsOpen(false)}
                 className="text-2xl text-inherit"
@@ -162,7 +161,7 @@ const Navbar = () => {
             </div>
 
             {/* Navigation items */}
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col space-y-4 px-5">
               {navItems.map((item, index) => (
                 <a
                   key={index}
@@ -180,11 +179,11 @@ const Navbar = () => {
 
             {/* Bottom row with icons */}
             <div className="flex mt-5 border border-[var(--primary-color)] dark:border-[var(--primary-color)]">
-              <div className="w-1/2 flex justify-center items-center border-r border-[var(--primary-color)] py-4">
-                <FiPlus className="text-2xl text-[var(--primary-color)]" />
+              <div className="w-1/2 flex justify-center items-center border-r border-[var(--primary-color)] py-3">
+                <FiPlus className="text-xl text-[var(--primary-color)]" />
               </div>
-              <div className="w-1/2 flex justify-center items-center py-4">
-                <FiBookmark className="text-2xl text-[var(--primary-color)]" />
+              <div className="w-1/2 flex justify-center items-center py-3">
+                <FiBookmark className="text-xl text-[var(--primary-color)]" />
               </div>
             </div>
           </div>

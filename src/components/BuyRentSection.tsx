@@ -12,7 +12,7 @@ export default function BuyRentSection() {
     <div className="bg-white dark:bg-black text-black dark:text-white py-16 px-6 md:px-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-stretch">
         {/* Left Text Block */}
-        <div className="border-t border-b border-l border-gray-700 h-[300px] my-auto p-6 md:p-12 flex items-center">
+        <div className=" border border-gray-700 h-[300px] my-auto p-6 md:p-12 flex items-center">
           <div className="space-y-4 w-full">
             {/* BUY Row */}
             <div
@@ -32,7 +32,7 @@ export default function BuyRentSection() {
                 }`}
               >
                 <span
-                  className={`absolute -right-2 -top-4 text-black dark:text-white  text-xl transition-opacity duration-300 ${
+                  className={`absolute -right-2 md:-top-4 -top-[13px] text-black dark:text-white  text-xl transition-opacity duration-300 ${
                     activeTab === "buy" ? "opacity-100" : "opacity-100"
                   }`}
                 >
@@ -59,7 +59,7 @@ export default function BuyRentSection() {
                 }`}
               >
                 <span
-                  className={`absolute -right-2 -top-4 text-black dark:text-white text-xl transition-opacity duration-300 ${
+                  className={`absolute -right-2 md:-top-4 -top-[13px] text-black dark:text-white text-xl transition-opacity duration-300 ${
                     activeTab === "rent" ? "opacity-100" : "opacity-100"
                   }`}
                 >
@@ -68,7 +68,7 @@ export default function BuyRentSection() {
               </div>
             </div>
 
-            <p className="text-gray-400 mt-8 text-sm md:text-base leading-relaxed max-w-md">
+            <p className="text-gray-500 mt-8 text-sm md:text-base leading-relaxed max-w-md">
               With a comprehensive portfolio of properties and countless offers,
               we cover all your real estate needs.
             </p>

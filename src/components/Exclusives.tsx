@@ -71,12 +71,12 @@ const Exclusives = () => {
   const offset = index * 100; // one full card per scroll
 
   return (
-    <section className="bg-white dark:bg-black text-black dark:text-white py-10 px-4 md:px-28 font-raleway font-thin custom-gradient-lines relative">
+    <section className="bg-white dark:bg-black text-black dark:text-white py-10 px-2 md:px-28 font-raleway font-thin custom-gradient-lines relative">
       <div className="mb-8">
-        <h2 className="text-3xl md:text-4xl font-light text-black dark:text-white mb-2 pl-6">
+        <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100 md:text-center pl-6">
           EXCLUSIVES
         </h2>
-        <p className="text-sm md:text-base pl-6 font-light dark:font-thin">
+        <p className="text-sm md:text-base pl-6 font-light dark:font-thin md:text-center">
           Discover the outstanding range of Dubai properties only with{" "}
           <span className="text-[var(--primary-color)] font-light">
             MONDUS PROPERTIES
@@ -175,22 +175,22 @@ const Exclusives = () => {
         </div>
 
         {/* Navigation */}
-        <div className="flex justify-between mt-6 px-2 sm:px-6 text-white/70 text-sm">
+        <div className="flex justify-between mt-6 px-2 sm:px-6 text-black dark:text-white text-sm font-light">
           <button
             onClick={handlePrev}
             disabled={index === 0}
-            className="flex items-center gap-2 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex items-center gap-2  disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ChevronLeft size={20} />
             PREV
           </button>
-          <span className="text-white">
+          <span className="text-black dark:text-white">
             {index + 1} / {properties.length}
           </span>
           <button
             onClick={handleNext}
             disabled={index + 1 >= properties.length}
-            className="flex items-center gap-2 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex items-center gap-2  disabled:opacity-30 disabled:cursor-not-allowed"
           >
             NEXT
             <ChevronRight size={20} />

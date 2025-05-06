@@ -67,7 +67,7 @@ const ReviewSection = () => {
   };
 
   return (
-    <section className="relative custom-gradient-lines w-full bg-white text-black dark:bg-black dark:text-white py-10 px-4 sm:px-6 lg:px-12 xl:px-20 font-raleway font-light dark:font-thin ">
+    <section className="relative custom-gradient-lines w-full bg-white text-black dark:bg-black dark:text-white py-10 px-4 sm:px-6 lg:px-28 font-raleway font-light dark:font-thin ">
       <h2 className="text-center text-3xl font-light mb-10 tracking-wide">
         REVIEWS
       </h2>
@@ -82,7 +82,7 @@ const ReviewSection = () => {
                 <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   {expanded === index
                     ? review.content
-                    : `${review.content.slice(0, 150)}...`}
+                    : `${review.content.slice(0, 140)}...`}
                 </p>
               </div>
               <div className="mt-4">
@@ -105,14 +105,14 @@ const ReviewSection = () => {
         ))}
       </Slider>
 
-      <div className="mt-10 flex flex-col items-center gap-6">
+      {/* <div className="mt-10 flex flex-col items-center gap-6">
         <button className="text-[var(--primary-color)] text-sm hover:underline font-light">
           Show All
         </button>
         <button className="border border-[var(--primary-color)] px-6 py-3 text-[var(--primary-color)] hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-black hover:font-light transition-all duration-200">
           Leave your review
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };

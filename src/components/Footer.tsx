@@ -36,7 +36,7 @@ const Footer = () => {
           {[
             ["Apartments", "Penthouses", "Villas", "Townhouses"],
             ["Off-Plan", "Catalogs", "Area Guides", "Sell"],
-            ["Rent", "Developers", "AX CORPORATE", "Reviews"],
+            ["Rent", "Developers", "Reviews"],
             ["Careers", "Contact Us"],
           ].map((group, idx) => (
             <ul key={idx} className="space-y-2">
