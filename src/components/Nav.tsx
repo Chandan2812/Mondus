@@ -3,6 +3,13 @@ import { FiMenu, FiBookmark, FiPlus, FiSun, FiMoon } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import logo from "../assets/mondus.png";
 
+declare global {
+  interface Window {
+    googleTranslateElementInit: () => void;
+    google: any;
+  }
+}
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -34,6 +41,33 @@ const Navbar = () => {
     "Agents",
     "The AX Way",
   ];
+
+  useEffect(() => {
+    const googleTranslateElementInit = () => {
+      // @ts-ignore
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          autoDisplay: false,
+          includedLanguages: "en,ru,ar,fr", // Only these languages will show
+        },
+        "google_translate_element"
+      );
+    };
+    // Check if the script has already been added
+    const loadGoogleTranslateScript = () => {
+      if (!window.googleTranslateElementInit) {
+        const script = document.createElement("script");
+        script.src =
+          "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+        script.async = true;
+        document.body.appendChild(script);
+        window.googleTranslateElementInit = googleTranslateElementInit;
+      }
+    };
+
+    loadGoogleTranslateScript();
+  }, []);
 
   return (
     <nav className="bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin w-full fixed top-0 z-50 border-b border-gray-200 dark:border-gray-800 transition-colors">
@@ -82,6 +116,10 @@ const Navbar = () => {
 
             {/* Right section */}
             <div className="flex items-center space-x-6">
+              <div
+                id="google_translate_element"
+                className="fixed top-5.5  -translate-x-1/2 z-[9990] right-[430px] lg:translate-x-0"
+              ></div>
               <FaWhatsapp className="text-[var(--primary-color)] text-2xl cursor-pointer font-light" />
               <a
                 href="#"
