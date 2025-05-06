@@ -1,5 +1,5 @@
 import { useState } from "react";
-import hero from "../assets/intro_1.webp";
+import hero from "../assets/frame_img.svg";
 
 export default function Hero() {
   const [selectedTab, setSelectedTab] = useState("primary");
