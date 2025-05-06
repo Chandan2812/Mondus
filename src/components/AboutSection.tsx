@@ -6,13 +6,13 @@ export default function AboutSection() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section className="bg-black text-white px-4 py-12 md:py-20 flex justify-center relative overflow-hidden custom-gradient-lines">
-      <div className="border border-gray-700 max-w-7xl w-full p-6 md:p-12">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-light tracking-wide text-[#d3a188] mb-6">
+    <section className="bg-white text-black font-light px-4 py-12 md:py-20 flex justify-center relative overflow-hidden custom-gradient-lines font-raleway dark:font-thin dark:bg-black dark:text-white">
+      <div className="border border-gray-700 max-w-7xl w-full p-6 md:p-12 dark:border-gray-600">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-light tracking-wide text-[var(--primary-color)] mb-6">
           MONDUS PROPERTIES – A REAL ESTATE AGENCY IN DUBAI
         </h2>
 
-        <p className="text-sm md:text-base text-gray-300 mb-6">
+        <p className="text-sm md:text-base text-black mb-6 dark:text-white">
           MONDUS PROPERTIES is a professional real estate agency involved in
           sale and rent of properties in Dubai, UAE. We process our clients’
           requests promptly in a CRM system, so all your questions will be
@@ -20,7 +20,7 @@ export default function AboutSection() {
           and are happy to consult with you on property selection at any time.
         </p>
 
-        <p className="text-sm md:text-base text-gray-500 mb-6">
+        <p className="text-sm md:text-base text-black mb-6 dark:text-white">
           Our team is comprised of experts of over 40 nationalities,
           collectively speaking 30 languages, allowing us to communicate with
           clients, understand their needs, and respond to any requests. With
@@ -32,14 +32,14 @@ export default function AboutSection() {
         {!expanded ? (
           <button
             onClick={() => setExpanded(true)}
-            className="text-[#d3a188] text-sm tracking-wide inline-block border-t border-[#d3a188] pt-2 hover:underline"
+            className="text-[var(--primary-color)] text-sm tracking-wide inline-block border-b border-[var(--primary-color)] pt-2  dark:text-[var(--primary-color)] dark:border-[var(--primary-color)]"
           >
             READ MORE
           </button>
         ) : (
           <>
             {/* Expanded Content */}
-            <div className="mt-6 space-y-4 text-sm md:text-base text-gray-400">
+            <div className="mt-6 space-y-4 text-sm md:text-base text-black dark:text-white">
               <p>
                 Our database is constantly being updated and includes over 5,000
                 properties, allowing our customers to choose a home to their
@@ -58,7 +58,7 @@ export default function AboutSection() {
                 estate market but we are actively investing in developing
                 in-house IT solutions, such as:
               </p>
-              <ul className="list-disc list-inside ml-4">
+              <ul className="list-disc list-inside ml-4 dark:text-white">
                 <li>Innovative property sales platforms</li>
                 <li>CRM systems for brokers and developers</li>
                 <li>New VR and AR solutions for property marketing</li>
@@ -68,7 +68,9 @@ export default function AboutSection() {
                 to offer them to our customers.
               </p>
 
-              <h3 className="text-[#d3a188] font-semibold mt-4">Investment</h3>
+              <h3 className="text-[var(--primary-color)] font-semibold mt-4 dark:text-[var(--primary-color)]">
+                Investment
+              </h3>
               <p>
                 Buy-to-live and buy-to-rent properties, as well as vacation
                 homes in the UAE generate a high stable income. The return on
@@ -79,7 +81,7 @@ export default function AboutSection() {
                 transparent.
               </p>
 
-              <h3 className="text-[#d3a188] font-semibold mt-4">
+              <h3 className="text-[var(--primary-color)] font-semibold mt-4 dark:text-[var(--primary-color)]">
                 Real estate agency services in Dubai, UAE
               </h3>
               <p>
@@ -89,7 +91,7 @@ export default function AboutSection() {
                 Our luxury real estate agency offers a comprehensive range of
                 services, which include:
               </p>
-              <ul className="list-disc list-inside ml-4">
+              <ul className="list-disc list-inside ml-4 dark:text-white">
                 <li>
                   A selection of investment properties that meet customers’
                   personal requirements and preferences
@@ -110,7 +112,7 @@ export default function AboutSection() {
                 </li>
               </ul>
 
-              <h3 className="text-[#d3a188] font-semibold mt-4">
+              <h3 className="text-[var(--primary-color)] font-semibold mt-4 dark:text-[var(--primary-color)]">
                 Buying property through an agency in Dubai
               </h3>
               <p>
@@ -133,7 +135,7 @@ export default function AboutSection() {
             <div className="mt-6">
               <button
                 onClick={() => setExpanded(false)}
-                className="text-[#d3a188] text-sm tracking-wide inline-block border-t border-[#d3a188] pt-2 hover:underline"
+                className="text-[var(--primary-color)] text-sm tracking-wide inline-block border-b border-[var(--primary-color)] pt-2 dark:text-[var(--primary-color)] dark:border-[var(--primary-color)]"
               >
                 SEE LESS
               </button>

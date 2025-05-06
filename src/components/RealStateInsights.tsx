@@ -97,7 +97,7 @@ const RealStateInsights = () => {
   }, [index]);
 
   return (
-    <div className="px-4 py-10 bg-white dark:bg-black text-black dark:text-white font-raleway font-thin">
+    <div className="px-4 py-10 bg-white dark:bg-black text-black dark:text-white font-raleway font-thin ">
       <h2 className="text-center text-3xl font-thin">
         EXPERT REAL ESTATE INSIGHTS
       </h2>
@@ -110,7 +110,7 @@ const RealStateInsights = () => {
       {/* Carousel */}
       <div
         ref={carouselRef}
-        className="max-w-7xl mx-auto mt-8 flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide cursor-grab"
+        className="max-w-7xl mx-auto mt-8 flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
         onMouseUp={handleMouseUp}
@@ -132,7 +132,7 @@ const RealStateInsights = () => {
               <p className="mt-4 text-gray-700 dark:text-gray-300">
                 {item.desc}
               </p>
-              <button className="mt-6 border border-[var(--primary-color)] text-[var(--primary-color)] px-6 py-2 uppercase tracking-wide hover:bg-[var(--primary-color)] hover:text-white transition w-fit">
+              <button className="mt-6 border border-[var(--primary-color)] text-[var(--primary-color)] px-6 py-2 uppercase tracking-wide hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-white transition w-fit">
                 {item.button}
               </button>
             </div>

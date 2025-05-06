@@ -14,7 +14,7 @@ const reviews: Review[] = [
   {
     name: "OMER KHAN",
     content:
-      "I was looking at the real estate market of Dubai and got in contact with Ms. Hana Taghdis of AX CAPITAL. She showed me multiple projects and finally I was able to select a unit of my choice. I’ve had a great experience dealing with her as she is not only very friendly but also extremely professional.",
+      "I was looking at the real estate market of Dubai and got in contact with Ms. Hana Taghdis of MONDUS. She showed me multiple projects and finally I was able to select a unit of my choice. I’ve had a great experience dealing with her as she is not only very friendly but also extremely professional.",
     rating: 5,
   },
   {
@@ -67,19 +67,19 @@ const ReviewSection = () => {
   };
 
   return (
-    <section className="w-full bg-black text-white py-10 px-4 sm:px-6 lg:px-12 xl:px-20">
+    <section className=" w-full bg-white text-black dark:bg-black dark:text-white py-10 px-4 sm:px-6 lg:px-12 xl:px-20 font-raleway font-light dark:font-thin ">
       <h2 className="text-center text-3xl font-light mb-10 tracking-wide">
         REVIEWS
       </h2>
       <Slider {...settings} className="cursor-grab">
         {reviews.map((review, index) => (
           <div key={index} className="px-2 ">
-            <div className="bg-[#111] p-6 border border-[#222] rounded-md flex flex-col justify-between h-full ">
+            <div className="bg-gray-50 dark:bg-[#111] p-6 border border-[#222] rounded-md flex flex-col justify-between h-full ">
               <div>
-                <h3 className="text-lg font-light mb-2 uppercase tracking-wide text-gray-200">
+                <h3 className="text-lg font-light mb-2 uppercase tracking-wide text-gray-800 dark:text-gray-200">
                   {review.name}
                 </h3>
-                <p className="text-sm leading-relaxed text-gray-400">
+                <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300">
                   {expanded === index
                     ? review.content
                     : `${review.content.slice(0, 150)}...`}
@@ -88,14 +88,14 @@ const ReviewSection = () => {
               <div className="mt-4">
                 <div className="flex space-x-1 mb-4">
                   {Array.from({ length: review.rating }).map((_, i) => (
-                    <FaStar key={i} className="text-orange-400" />
+                    <FaStar key={i} className="text-[var(--primary-color)]" />
                   ))}
                 </div>
                 <button
                   onClick={() =>
                     setExpanded((prev) => (prev === index ? null : index))
                   }
-                  className="text-sm text-orange-300 hover:underline"
+                  className="text-sm text-[var(--primary-color)] hover:underline"
                 >
                   {expanded === index ? "SEE LESS" : "READ MORE"}
                 </button>
@@ -106,10 +106,10 @@ const ReviewSection = () => {
       </Slider>
 
       <div className="mt-10 flex flex-col items-center gap-6">
-        <button className="text-orange-300 text-sm hover:underline">
+        <button className="text-[var(--primary-color)] text-sm hover:underline font-light">
           Show All
         </button>
-        <button className="border border-orange-300 px-6 py-3 text-orange-300 hover:bg-orange-400 hover:text-black transition-all duration-200">
+        <button className="border border-[var(--primary-color)] px-6 py-3 text-[var(--primary-color)] hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-black transition-all duration-200">
           Leave your review
         </button>
       </div>

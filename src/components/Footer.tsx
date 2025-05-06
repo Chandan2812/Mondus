@@ -27,7 +27,7 @@ const Footer = () => {
       </div>
 
       {/* Mid horizontal line */}
-      <div className="border-t border-gray-300 dark:border-gray-700 w-full mb-8" />
+      <div className="md:max-w-7xl mx-auto border-t border-gray-300 dark:border-gray-700 w-full mb-8" />
 
       {/* Main content */}
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between px-6 sm:px-12 lg:px-6 gap-8 pb-10 font-light dark:font-thin ">
