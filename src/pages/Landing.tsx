@@ -17,8 +17,9 @@ export const Landing = () => {
       <FindYourPartner />
       <RealStateInsights />
       <ReviewSection />
-      <PromptConsultation />
       <AboutSection />
+      <PromptConsultation />
+
       <Footer />
     </div>
   );
