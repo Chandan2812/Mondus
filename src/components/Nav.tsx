@@ -36,7 +36,7 @@ const Navbar = () => {
     "Rent",
     "Sell",
     "Off-Plan",
-    "AX Journal",
+    "Chronicle ",
     "Catalogs",
     "Agents",
     "The AX Way",
