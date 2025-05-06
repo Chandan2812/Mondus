@@ -4,7 +4,6 @@ import {
   FaLinkedinIn,
   FaWhatsapp,
   FaInstagram,
-  FaVk,
   FaYoutube,
 } from "react-icons/fa";
 import logo from "../assets/mondus.png";
@@ -57,7 +56,7 @@ const Footer = () => {
         <div className="space-y-4 lg:text-right">
           <h3 className="text-lg">Dubai, UAE</h3>
           <p className="text-gray-700 dark:text-gray-200">
-            14th Floor, Westburry Office, Business Bay
+            Mondus Group Iris Bay 2402 , Business Bay , Dubai
           </p>
           <div className="flex justify-start lg:justify-end gap-4 pt-2 text-[var(--primary-color)] text-xl">
             <FaEnvelope />
@@ -65,7 +64,6 @@ const Footer = () => {
             <FaLinkedinIn />
             <FaWhatsapp />
             <FaInstagram />
-            <FaVk />
             <FaYoutube />
           </div>
           <button className="mt-4 border border-[var(--primary-color)] text-[var(--primary-color)] px-6 py-2 uppercase tracking-wide hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-white dark:hover:text-black hover:font-light transition">
@@ -75,8 +73,8 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom Links */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-6 py-6 text-xs text-gray-600 dark:text-gray-400 flex flex-col sm:flex-row justify-between gap-2 border-t border-gray-300 dark:border-gray-700">
-        <span>AX CAPITAL ©2025 All Rights Reserved</span>
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-6 py-6 text-xs text-gray-600 dark:text-gray-400 flex flex-col sm:flex-row justify-between gap-2">
+        <span>Mondus ©2025 All Rights Reserved</span>
         <div className="flex gap-4">
           {["Terms of Use", "Privacy Policy", "Sitemap"].map((item, idx) => (
             <a

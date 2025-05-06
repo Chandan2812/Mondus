@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import Navbar from "../components/Nav";
 import PromptConsultation from "../components/PromptConsultation";
+import RealStateInsights from "../components/RealStateInsights";
 import ReviewSection from "../components/review";
 
 export const Landing = () => {
@@ -14,6 +15,7 @@ export const Landing = () => {
       <Hero />
       <RealEstateExperts />
       <FindYourPartner />
+      <RealStateInsights />
       <ReviewSection />
       <PromptConsultation />
       <AboutSection />

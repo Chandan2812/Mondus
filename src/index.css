@@ -39,3 +39,13 @@
 .custom-gradient-lines::after {
   bottom: 0;
 }
+
+/* Add this to your index.css or global CSS */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
