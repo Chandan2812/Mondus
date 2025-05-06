@@ -21,7 +21,7 @@ const reviews: Review[] = [
     name: "NATHALIE SYVAK",
     content:
       "Our real estate agent is Yulia Kravchenko, we are very pleased with her work and I would like to note her approach to the client. Starting from the first conversation, where I was asked all the necessary questions to find something just for us, ending with the signing of a contract with the developer.",
-    rating: 5,
+    rating: 4,
   },
   {
     name: "MIKE MIKE",

@@ -1,4 +1,5 @@
 import AboutSection from "../components/AboutSection";
+import BuyRentSection from "../components/BuyRentSection";
 import RealEstateExperts from "../components/expert";
 import FindYourPartner from "../components/FindYourPartner";
 import Footer from "../components/Footer";
@@ -14,6 +15,7 @@ export const Landing = () => {
       <Navbar />
       <Hero />
       <RealEstateExperts />
+      <BuyRentSection />
       <FindYourPartner />
       <RealStateInsights />
       <ReviewSection />

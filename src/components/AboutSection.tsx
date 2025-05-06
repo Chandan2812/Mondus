@@ -7,7 +7,7 @@ export default function AboutSection() {
 
   return (
     <section className="bg-black text-white px-4 py-12 md:py-20 flex justify-center relative overflow-hidden custom-gradient-lines">
-      <div className="border border-gray-700 max-w-7xl w-full p-6 md:p-12">
+      <div className="border border-radient-to-r from-[var(--primary-color)]  max-w-7xl w-full p-6 md:p-12">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-light tracking-wide text-[#d3a188] mb-6">
           MONDUS PROPERTIES – A REAL ESTATE AGENCY IN DUBAI
         </h2>
