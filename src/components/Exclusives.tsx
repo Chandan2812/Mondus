@@ -1,6 +1,5 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const properties = [
   {
@@ -58,111 +57,145 @@ const properties = [
   // Add more property objects as needed
 ];
 
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  centerPadding: "30px", // Optional: adjust spacing
-};
-
 const Exclusives = () => {
+  const [index, setIndex] = useState(0);
+
+  const handlePrev = () => {
+    if (index > 0) setIndex(index - 1);
+  };
+
+  const handleNext = () => {
+    if (index + 1 < properties.length) setIndex(index + 1);
+  };
+
+  const offset = index * 100; // one full card per scroll
+
   return (
-    <section className="bg-black text-white py-10 px-4 md:px-28">
+    <section className="bg-white dark:bg-black text-black dark:text-white py-10 px-4 md:px-28 font-raleway font-thin custom-gradient-lines relative">
       <div className="mb-8">
-        <h2 className="text-3xl md:text-4xl font-light text-white mb-2">
+        <h2 className="text-3xl md:text-4xl font-light text-black dark:text-white mb-2 pl-6">
           EXCLUSIVES
         </h2>
-        <p className="text-sm md:text-base">
+        <p className="text-sm md:text-base pl-6 font-light dark:font-thin">
           Discover the outstanding range of Dubai properties only with{" "}
-          <span className="text-[#FF5F5F]">MONDUS PROPERTIES</span>
+          <span className="text-[var(--primary-color)] font-light">
+            MONDUS PROPERTIES
+          </span>
         </p>
       </div>
 
-      <Slider {...settings}>
-        {properties.map((property, index) => (
-          <div key={index} className="px-4">
-            {" "}
-            {/* Slide spacing */}
-            <div className="flex flex-col md:flex-row bg-[#1A1A1A] rounded-lg overflow-hidden">
-              {/* Left side with image */}
-              <div className="w-full md:w-1/2">
-                <img
-                  src={property.image}
-                  alt={property.title}
-                  className="w-full h-full object-cover md:h-[80vh]"
-                />
-                <div className="p-4">
-                  <h3 className="text-xl md:text-2xl font-light mb-2">
-                    {property.title}
-                  </h3>
-                  <p className="flex items-center text-sm">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-4 h-4 mr-2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19.5 10.5c0 7.5-7.5 11.25-7.5 11.25S4.5 18 4.5 10.5a7.5 7.5 0 1115 0z"
-                      />
-                    </svg>
-                    {property.location}
-                  </p>
+      <div className="relative overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${offset}%)` }}
+        >
+          {properties.map((property, idx) => (
+            <div key={idx} className="flex-shrink-0 w-full px-4">
+              <div className="flex flex-col md:flex-row bg-gray-50 dark:bg-[#1A1A1A] rounded-lg overflow-hidden">
+                {/* Image section */}
+                <div className="w-full md:w-1/2">
+                  <img
+                    src={property.image}
+                    alt={property.title}
+                    className="w-full h-full object-cover md:h-[80vh]"
+                  />
+                  <div className="p-4">
+                    <h3 className="text-xl md:text-2xl font-light mb-2">
+                      {property.title}
+                    </h3>
+                    <p className="flex items-center text-sm font-light dark:font-thin">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-4 h-4 mr-2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19.5 10.5c0 7.5-7.5 11.25-7.5 11.25S4.5 18 4.5 10.5a7.5 7.5 0 1115 0z"
+                        />
+                      </svg>
+                      {property.location}
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              {/* Right side with content */}
-              <div className="w-full md:w-1/2 p-6 flex flex-col gap-4">
-                <div>
-                  <h4 className="text-lg font-semibold mb-1">ROI</h4>
-                  <p className="text-sm">Expected ROI – {property.roi}</p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-1">PRIME LOCATION</h4>
-                  <p className="text-sm">{property.locationDetails}</p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-1">PAYMENT PLAN</h4>
-                  <p className="text-sm">{property.paymentPlan}</p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold mb-1">DESIGN</h4>
-                  <p className="text-sm">{property.design}</p>
-                </div>
-                <p className="text-sm text-gray-300">{property.description}</p>
-                <p className="text-sm font-light">
-                  Handover date: {property.handover}
-                </p>
-                <div className="mt-4 flex gap-4">
-                  <button className="bg-[#F6C667] text-black px-6 py-2 rounded">
-                    Enquire now
-                  </button>
-                  <button className="border border-white px-6 py-2 rounded">
-                    Learn more
-                  </button>
+                {/* Details section */}
+                <div className="w-full md:w-1/2 p-6 flex flex-col gap-4">
+                  <div>
+                    <h4 className="text-lg font-light mb-1">ROI</h4>
+                    <p className="text-sm font-light dark:font-thin">
+                      Expected ROI – {property.roi}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-light mb-1">PRIME LOCATION</h4>
+                    <p className="text-sm font-light dark:font-thin">
+                      {property.locationDetails}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-light mb-1">PAYMENT PLAN</h4>
+                    <p className="text-sm font-light dark:font-thin">
+                      {property.paymentPlan}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-light mb-1">DESIGN</h4>
+                    <p className="text-sm font-light dark:font-thin">
+                      {property.design}
+                    </p>
+                  </div>
+                  <p className="text-sm font-light dark:font-thin">
+                    {property.description}
+                  </p>
+                  <p className="text-sm font-light dark:font-thin">
+                    Handover date: {property.handover}
+                  </p>
+                  <div className="mt-4 flex gap-4">
+                    <button className="bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] text-black px-6 py-2">
+                      Enquire now
+                    </button>
+                    <button className="border border-black dark:border-white px-6 py-2 font-light dark:font-thin">
+                      Learn more
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </div>
 
-      <div className="mt-6 flex justify-between text-sm text-white/70">
-        <span>PREV</span>
-        <span className="text-white">3 / 4</span>
-        <span>NEXT</span>
+        {/* Navigation */}
+        <div className="flex justify-between mt-6 px-2 sm:px-6 text-white/70 text-sm">
+          <button
+            onClick={handlePrev}
+            disabled={index === 0}
+            className="flex items-center gap-2 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <ChevronLeft size={20} />
+            PREV
+          </button>
+          <span className="text-white">
+            {index + 1} / {properties.length}
+          </span>
+          <button
+            onClick={handleNext}
+            disabled={index + 1 >= properties.length}
+            className="flex items-center gap-2 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            NEXT
+            <ChevronRight size={20} />
+          </button>
+        </div>
       </div>
     </section>
   );
