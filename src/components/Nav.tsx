@@ -49,7 +49,6 @@ const Navbar = () => {
         {
           pageLanguage: "en",
           autoDisplay: false,
-          includedLanguages: "en,ru,ar,fr", // Only these languages will show
         },
         "google_translate_element"
       );
