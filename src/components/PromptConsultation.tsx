@@ -3,7 +3,7 @@ import { FaWhatsapp } from "react-icons/fa";
 const PromptConsultation = () => {
   return (
     <div className="w-full px-4 py-10 flex justify-center bg-white dark:bg-black text-black dark:text-white font-raleway transition-colors duration-300">
-      <div className="w-full max-w-7xl bg-gradient-to-r from-[var(--primary-color)] via-gray-300 dark:via-gray-900 to-[var(--primary-color)] p-[1px] rounded-sm">
+      <div className="w-full max-w-7xl bg-gradient-to-r from-[var(--primary-color)] via-gray-900 to-[var(--primary-color)]  p-[1px]  bg-center">
         <div className="bg-white dark:bg-black px-8 py-10 sm:px-16 sm:py-14 transition-colors duration-300">
           <h2 className="text-center text-xl sm:text-2xl tracking-wide font-light mb-2">
             PROMPT CONSULTATION
