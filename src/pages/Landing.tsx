@@ -20,10 +20,11 @@ export const Landing = () => {
       <BuyRentSection />
       <Exclusives />
       <FindYourPartner />
-      <RealStateInsights />
+
       <ReviewSection />
       <AboutSection />
       <LifeStyleSection />
+      <RealStateInsights />
       <PromptConsultation />
 
       <Footer />

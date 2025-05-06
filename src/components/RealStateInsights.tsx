@@ -97,7 +97,7 @@ const RealStateInsights = () => {
   }, [index]);
 
   return (
-    <div className="px-4 py-10 bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin">
+    <div className="px-4 py-10 bg-white dark:bg-black text-black dark:text-white font-raleway font-light dark:font-thin relative custom-gradient-lines">
       <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100 text-center">
         EXPERT REAL ESTATE INSIGHTS
       </h2>

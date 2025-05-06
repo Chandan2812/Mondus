@@ -67,7 +67,7 @@ const ReviewSection = () => {
   };
 
   return (
-    <section className="relative custom-gradient-lines w-full bg-white text-black dark:bg-black dark:text-white py-10 px-4 sm:px-6 lg:px-28 font-raleway font-light dark:font-thin ">
+    <section className="relative w-full bg-white text-black dark:bg-black dark:text-white py-10 px-4 sm:px-6 lg:px-28 font-raleway font-light dark:font-thin ">
       <h2 className="text-center text-3xl font-light mb-10 tracking-wide">
         REVIEWS
       </h2>
