@@ -112,16 +112,45 @@ const Navbar = () => {
 
       {/* Mobile dropdown menu */}
       {isOpen && (
-        <div className="md:hidden bg-white dark:bg-black px-4 py-2 space-y-2">
-          {navItems.map((item, index) => (
-            <a
-              key={index}
-              href="#"
-              className="block text-inherit hover:text-[var(--primary-color)] text-base transition-colors"
+        <div className="md:hidden fixed inset-0 z-40 bg-white dark:bg-black flex flex-col px-6 pb-4">
+          {/* Header with logo and close */}
+          <div className="flex justify-between items-center mb-6">
+            <img src={logo} alt="Mondus Logo" className="w-36" />
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-2xl text-inherit"
+              title="Close"
             >
-              {item}
-            </a>
-          ))}
+              ✕
+            </button>
+          </div>
+
+          {/* Navigation items */}
+          <div className="flex flex-col space-y-4">
+            {navItems.map((item, index) => (
+              <a
+                key={index}
+                href="#"
+                onClick={() => {
+                  setActiveItem(item);
+                  setIsOpen(false);
+                }}
+                className="text-lg text-inherit hover:text-[var(--primary-color)] transition-colors"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+
+          {/* Bottom row with icons */}
+          <div className="flex mt-5 border border-[var(--primary-color)] dark:border-[var(--primary-color)]">
+            <div className="w-1/2 flex justify-center items-center border-r border-[var(--primary-color)] py-4">
+              <FiPlus className="text-2xl text-[var(--primary-color)]" />
+            </div>
+            <div className="w-1/2 flex justify-center items-center py-4">
+              <FiBookmark className="text-2xl text-[var(--primary-color)]" />
+            </div>
+          </div>
         </div>
       )}
     </nav>

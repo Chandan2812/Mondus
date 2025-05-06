@@ -2,7 +2,7 @@ import React from "react";
 
 const RealEstateExperts: React.FC = () => {
   return (
-    <div className="bg-white text-black dark:bg-black dark:text-white font-sans transition-colors">
+    <div className="bg-white text-black dark:bg-black dark:text-white  transition-colors font-raleway">
       <div className="w-11/12 mx-auto grid md:grid-cols-3 gap-4 md:gap-8 items-center p-4 md:p-16">
         {/* Image section (1/3 for desktop) */}
         <div className="relative w-full md:col-span-1 flex justify-center">

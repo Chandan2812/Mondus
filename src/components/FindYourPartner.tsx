@@ -99,7 +99,7 @@ const FindYourPartner: React.FC = () => {
 
   return (
     <section className="relative custom-gradient-lines">
-      <div className="py-12 px-4 md:px-16 relative bg-white dark:bg-black text-black dark:text-white">
+      <div className="py-12 px-4 md:px-16 relative bg-white dark:bg-black text-black dark:text-white font-raleway">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
           {/* Left Text */}
           <div>
@@ -136,13 +136,13 @@ const FindYourPartner: React.FC = () => {
             {/* Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-2 sm:left-0 z-40 bg-white border border-black px-3 py-2 text-black hover:bg-black hover:text-white transition dark:bg-black dark:border-white dark:text-white"
+              className="absolute left-2 sm:left-0 z-40 bg-white border border-black px-3 py-2 text-black hover:bg-black hover:text-white transition dark:bg-black dark:border-[var(--primary-color)] dark:text-[var(--primary-color)]"
             >
               ←
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-2 sm:right-0 z-40 bg-white border border-black px-3 py-2 text-black hover:bg-black hover:text-white transition dark:bg-black dark:border-white dark:text-white"
+              className="absolute right-2 sm:right-0 z-40 bg-white border border-black px-3 py-2 text-black hover:bg-black hover:text-white transition dark:bg-black dark:border-[var(--primary-color)] dark:text-[var(--primary-color)]"
             >
               →
             </button>
