@@ -132,7 +132,7 @@ const RealStateInsights = () => {
               <p className="mt-4 text-gray-700 dark:text-gray-300">
                 {item.desc}
               </p>
-              <button className="mt-6 border border-[var(--primary-color)] text-[var(--primary-color)] px-6 py-2 uppercase tracking-wide hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-white transition w-fit">
+              <button className="mt-6 border border-[var(--primary-color)] text-[var(--primary-color)] px-6 py-2 uppercase tracking-wide hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-black hover:font-light transition w-fit">
                 {item.button}
               </button>
             </div>

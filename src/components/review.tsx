@@ -109,7 +109,7 @@ const ReviewSection = () => {
         <button className="text-[var(--primary-color)] text-sm hover:underline font-light">
           Show All
         </button>
-        <button className="border border-[var(--primary-color)] px-6 py-3 text-[var(--primary-color)] hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-black transition-all duration-200">
+        <button className="border border-[var(--primary-color)] px-6 py-3 text-[var(--primary-color)] hover:bg-gradient-to-r from-[#C29579] via-[#e3c5b5] to-[#C29579] hover:text-black hover:font-light transition-all duration-200">
           Leave your review
         </button>
       </div>
