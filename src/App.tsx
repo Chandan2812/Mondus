@@ -46,6 +46,7 @@ import AdminListings from "./pages/admin/Listing";
 import Opportunity from "./pages/admin/Opportunity";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminProtectedRoute from "./pages/admin/Adminprotectedroute";
+import { Toaster } from "react-hot-toast";
 
 // ✅ Custom wrapper to access location inside App
 function AppWrapper() {
@@ -55,6 +56,8 @@ function AppWrapper() {
 
   return (
     <>
+      <Toaster position="bottom-center" />
+
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/buy" element={<Buy />} />
