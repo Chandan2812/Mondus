@@ -44,6 +44,8 @@ import ChatbotLead from "./pages/admin/ChatbotLead";
 import AdminBlog from "./pages/admin/AdminBlog";
 import AdminListings from "./pages/admin/Listing";
 import Opportunity from "./pages/admin/Opportunity";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminProtectedRoute from "./pages/admin/Adminprotectedroute";
 
 // ✅ Custom wrapper to access location inside App
 function AppWrapper() {
@@ -75,19 +77,25 @@ function AppWrapper() {
         <Route path="/area-guides/:title" element={<AreaGuideDetails />} />
 
         <Route path="/awards" element={<AwardsPage />} />
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="newsletter" element={<NewsletterPage />} />
-          <Route path="emailer" element={<EmailerPage />} />
-          <Route path="subscriber" element={<AdminSubscriber />} />
-          <Route path="contacts" element={<AdminContactRequest />} />
-          <Route path="request" element={<AdminNotify />} />
-          <Route path="chatleads" element={<ChatbotLead />} />
-          <Route path="sendnewsletter" element={<NewsletterForm />} />
-          <Route path="sendemailer" element={<Emailer />} />
-          <Route path="blogs" element={<AdminBlog />} />
-          <Route path="listing" element={<AdminListings />} />
-          <Route path="opportunity" element={<Opportunity />} />
+
+        {/* Admin login page */}
+        <Route path="/admin-login" element={<AdminLogin />} />
+
+        <Route path="/admin" element={<AdminProtectedRoute />}>
+          <Route element={<AdminLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="newsletter" element={<NewsletterPage />} />
+            <Route path="emailer" element={<EmailerPage />} />
+            <Route path="subscriber" element={<AdminSubscriber />} />
+            <Route path="contacts" element={<AdminContactRequest />} />
+            <Route path="request" element={<AdminNotify />} />
+            <Route path="chatleads" element={<ChatbotLead />} />
+            <Route path="sendnewsletter" element={<NewsletterForm />} />
+            <Route path="sendemailer" element={<Emailer />} />
+            <Route path="blogs" element={<AdminBlog />} />
+            <Route path="listing" element={<AdminListings />} />
+            <Route path="opportunity" element={<Opportunity />} />
+          </Route>
         </Route>
       </Routes>
 
@@ -101,7 +109,7 @@ function AppWrapper() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
-          className="fixed bottom-[140px] right-6 p-4 hidden md:block rounded-full bg-[var(--primary-color)] text-white shadow-lg hover:scale-105  transition z-50 items-center justify-center"
+          className="fixed bottom-[140px] right-6 p-4 hidden md:block rounded-full bg-[var(--primary-color)] text-white shadow-lg  hover:scale-105  transition z-50 items-center justify-center"
         >
           <FaWhatsapp size={22} />
         </a>

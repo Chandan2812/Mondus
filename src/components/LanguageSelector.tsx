@@ -14,7 +14,7 @@ const LanguageSelector = () => {
     // 3️⃣ Click the matching language anchor in the iframe:
     const intervalId = setInterval(() => {
       const iframe = document.querySelector(
-        "iframe.goog-te-menu-frame"
+        "iframe.goog-te-menu-frame",
       ) as HTMLIFrameElement;
       if (!iframe) return;
 
@@ -22,10 +22,10 @@ const LanguageSelector = () => {
       if (!innerDoc) return;
 
       const anchors = Array.from(
-        innerDoc.querySelectorAll("a.goog-te-menu2-item")
+        innerDoc.querySelectorAll("a.goog-te-menu2-item"),
       );
       const match = anchors.find((a) =>
-        a.getAttribute("href")?.includes(`#${selectedLang}`)
+        a.getAttribute("href")?.includes(`#${selectedLang}`),
       );
       if (match) {
         (match as HTMLElement).click();

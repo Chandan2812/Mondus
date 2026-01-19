@@ -33,25 +33,25 @@ const Dashboard = () => {
   useEffect(() => {
     Promise.all([
       fetch("https://mondus-backend.onrender.com/subscribers").then((r) =>
-        r.json()
+        r.json(),
       ),
       fetch("https://mondus-backend.onrender.com/newsletter").then((r) =>
-        r.json()
+        r.json(),
       ),
       fetch("https://mondus-backend.onrender.com/emailer").then((r) =>
-        r.json()
+        r.json(),
       ),
       fetch("https://mondus-backend.onrender.com/api/consultation").then((r) =>
-        r.json()
+        r.json(),
       ),
-      fetch("https://mondus-backend.onrender.com/api/notify").then((r) =>
-        r.json()
+      fetch("https://mondus-backend.onrender.com/api/notify/leads").then((r) =>
+        r.json(),
       ),
       fetch("https://mondus-backend.onrender.com/api/blogs/viewblog").then(
-        (r) => r.json()
+        (r) => r.json(),
       ),
       fetch("https://mondus-backend.onrender.com/api/listing").then((r) =>
-        r.json()
+        r.json(),
       ),
     ]).then(
       ([
@@ -72,7 +72,7 @@ const Dashboard = () => {
           blogs: (blogs as any[]).length,
           listedProperties: (listedProperties as any[]).length,
         });
-      }
+      },
     );
   }, []);
 

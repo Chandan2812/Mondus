@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
-import PromptConsultation from "../components/PromptConsultation";
 import blogHeroImage from "../assets/blog.jpg";
+import NotifyMe from "../components/NotifyMe";
 
 interface BlogPost {
   _id: string;
@@ -75,14 +75,14 @@ const Blog = () => {
       </section>
 
       <section className="w-[90%] mx-auto my-16">
-        {blogs.length === 0 ? (
+        {blogs?.length === 0 ? (
           <p className="text-center text-gray-500 dark:text-gray-400">
             No blog posts available at the moment.
           </p>
         ) : (
           <>
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-              {currentBlogs.map((post) => (
+              {currentBlogs?.map((post) => (
                 <div
                   key={post._id}
                   className="cursor-pointer relative rounded-lg p-[1.5px] hover:shadow-[0_0_10px_var(--primary-color)] transition"
@@ -155,7 +155,7 @@ const Blog = () => {
         )}
       </section>
 
-      <PromptConsultation />
+      <NotifyMe />
       <Footer />
     </div>
   );

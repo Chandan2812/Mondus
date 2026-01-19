@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
-import PromptConsultation from "../components/PromptConsultation";
+import NotifyMe from "../components/NotifyMe";
 
 interface BlogType {
   title: string;
@@ -52,7 +52,12 @@ const BlogDetails = () => {
     }
   }, [slug]);
 
-  if (loading) return <div className="pt-40 text-center">Loading...</div>;
+  if (loading)
+    return (
+      <div className="pt-40 text-center min-h-screen text-white dark:bg-black">
+        Loading...
+      </div>
+    );
   if (error)
     return <div className="pt-40 text-center text-red-600">{error}</div>;
   if (!blog) return null;
@@ -82,7 +87,7 @@ const BlogDetails = () => {
         />
       </div>
 
-      <PromptConsultation />
+      <NotifyMe />
       <Footer />
     </div>
   );

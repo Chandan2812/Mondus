@@ -19,7 +19,7 @@ const PromptConsultation = () => {
   const validatePhone = (phone: string) => /^\d{7,15}$/.test(phone); // simple check for 7 to 15 digits
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -59,7 +59,7 @@ const PromptConsultation = () => {
             email,
             phone: fullPhone,
           }),
-        }
+        },
       );
 
       const data = await res.json();
@@ -95,7 +95,7 @@ const PromptConsultation = () => {
             phone: fullPhone,
             otp,
           }),
-        }
+        },
       );
 
       const data = await res.json();
@@ -226,8 +226,8 @@ const PromptConsultation = () => {
               {loading
                 ? "Please wait..."
                 : step === 1
-                ? "Send OTP"
-                : "Verify OTP"}
+                  ? "Send OTP"
+                  : "Verify OTP"}
             </button>
           </form>
 

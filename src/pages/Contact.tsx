@@ -1,7 +1,7 @@
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
-import PromptConsultation from "../components/PromptConsultation";
+import NotifyMe from "../components/NotifyMe";
 
 function Contact() {
   return (
@@ -57,7 +57,7 @@ function Contact() {
           </div>
         </div>
       </section>
-      <PromptConsultation />
+      <NotifyMe />
       <Footer />
     </div>
   );

@@ -1,9 +1,9 @@
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
-import PromptConsultation from "../components/PromptConsultation";
 import image1 from "../assets/1.png";
 import image2 from "../assets/2.png";
 import image3 from "../assets/3.png";
+import NotifyMe from "../components/NotifyMe";
 
 const About = () => {
   return (
@@ -263,7 +263,7 @@ const About = () => {
         </div>
       </section>
 
-      <PromptConsultation />
+      <NotifyMe />
       <Footer />
     </div>
   );

@@ -53,7 +53,7 @@ const AdminNotify = () => {
                 </tr>
               </thead>
               <tbody>
-                {contacts.map((contact) => (
+                {contacts?.map((contact) => (
                   <tr
                     key={contact._id}
                     className="even:bg-[#111] hover:bg-[#222] transition duration-200"
