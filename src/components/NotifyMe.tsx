@@ -53,7 +53,7 @@ const NotifyMe = ({ onVerified }: NotifyMeProps) => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:8000/api/notify/send-otp",
+        "https://mondus-backend.onrender.com/api/notify/send-otp",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -84,11 +84,14 @@ const NotifyMe = ({ onVerified }: NotifyMeProps) => {
     const fullPhone = `${formData.countryCode}${formData.phone}`;
 
     try {
-      const res = await fetch("http://localhost:8000/api/notify/verify-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, phone: fullPhone, otp }),
-      });
+      const res = await fetch(
+        "https://mondus-backend.onrender.com/api/notify/verify-otp",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ...formData, phone: fullPhone, otp }),
+        },
+      );
 
       const data = await res.json();
 
