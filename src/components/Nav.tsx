@@ -47,7 +47,7 @@ const Navbar = () => {
     { label: "Buy", path: "/buy" },
     { label: "Rent", path: "/rent" },
     { label: "Sell", path: "/sell" },
-    { label: "Off-Plan", path: "/offplan" },
+    // { label: "Off-Plan", path: "/offplan" },
   ];
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const Navbar = () => {
           pageLanguage: "en",
           autoDisplay: false,
         },
-        "google_translate_element"
+        "google_translate_element",
       );
     };
 

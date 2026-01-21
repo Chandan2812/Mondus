@@ -1,38 +1,83 @@
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import generateSlug from "../../utils/generateSlug";
 
 /* ================= TYPES ================= */
 
 type ListingType = "buy" | "sell" | "rent" | "offPlan";
+type ConfirmAction = "delete" | "status" | null;
 
-interface Property {
+export interface Property {
   _id: string;
+
   propertyName: string;
-  listingType: ListingType;
+  slug: string;
+
+  listingType: ListingType; // "buy" | "rent"
   propertyType: string;
-  propertyDetails: string;
-  address: string;
-  subArea: string;
+
+  price: number;
+
   bedroom: number;
   bathroom: number;
   sizeSqft: number;
-  status: boolean;
-  propertyImages: string[];
-  createdAt: string;
-}
 
-interface PropertyForm {
-  propertyName: string;
-  listingType: ListingType;
-  propertyType: string;
   address: string;
   subArea: string;
+
+  developerName: string;
+
+  propertyDetails: string;
+
+  /* NEW FIELDS */
+  highlights: string[];
+  featuresAmenities: string[];
+  nearby: string[];
+  extraHighlights: string[];
+
+  videoLink?: string | null;
+  googleMapUrl?: string | null;
+
+  propertyImages: string[];
+  propertyBrochure?: string | null;
+
+  status: boolean;
+
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PropertyForm {
+  propertyName: string;
+  slug: string;
+  listingType: ListingType;
+  propertyType: string;
+
+  price: string;
+
   bedroom: string;
   bathroom: string;
   sizeSqft: string;
+
+  address: string;
+  subArea: string;
+
+  developerName: string;
   propertyDetails: string;
+
+  /* NEW UI FIELDS */
+  highlights: string;
+  featuresAmenities: string;
+  nearby: string;
+  extraHighlights: string;
+
+  videoLink: string;
+  googleMapUrl: string;
+
+  /* FILES */
   propertyImages: File[];
+  propertyBrochure?: File | null;
 }
 
 type ImageItem =
@@ -50,7 +95,12 @@ const PropertyManagement = () => {
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<ImageItem[]>([]);
-
+  const [brochure, setBrochure] = useState<File | null>(null);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<ConfirmAction>(null);
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null,
+  );
   const dragItem = useRef<number | null>(null);
   const dragOverItem = useRef<number | null>(null);
 
@@ -65,15 +115,32 @@ const PropertyManagement = () => {
   /* Form */
   const [form, setForm] = useState<PropertyForm>({
     propertyName: "",
+    slug: "",
     listingType: "buy",
     propertyType: "",
-    subArea: "",
-    address: "",
+
+    price: "",
+
     bedroom: "",
     bathroom: "",
     sizeSqft: "",
+
+    address: "",
+    subArea: "",
+
+    developerName: "",
     propertyDetails: "",
+
+    highlights: "",
+    featuresAmenities: "",
+    nearby: "",
+    extraHighlights: "",
+
+    videoLink: "",
+    googleMapUrl: "",
+
     propertyImages: [],
+    propertyBrochure: null,
   });
 
   /* ================= FETCH ================= */
@@ -129,44 +196,67 @@ const PropertyManagement = () => {
 
   /* ================= CREATE / UPDATE ================= */
 
-  //   const handleSubmit = async () => {
-  //     try {
-  //       const formData = new FormData();
-
-  //       Object.entries(form).forEach(([key, value]) => {
-  //         if (key !== "propertyImages") {
-  //           formData.append(key, value as string);
-  //         }
-  //       });
-
-  //       form.propertyImages.forEach((img) =>
-  //         formData.append("propertyImages", img),
-  //       );
-
-  //       if (editing) {
-  //         /* ===== OPTIMISTIC UPDATE ===== */
-  //         const optimistic = properties.map((p) =>
-  //           p._id === editing._id ? { ...p, propertyName: form.propertyName } : p,
-  //         );
-  //         setProperties(optimistic);
-
-  //         await axios.put(
-  //           `${API_BASE_URL}/api/property/${editing._id}`,
-  //           formData,
-  //         );
-  //         toast.success("Property updated");
-  //       } else {
-  //         const res = await axios.post(`${API_BASE_URL}/api/property`, formData);
-  //         setProperties([res.data.data, ...properties]);
-  //         toast.success("Property created");
-  //       }
-
-  //       closeForm();
-  //     } catch {
-  //       toast.error("Operation failed");
-  //       fetchProperties(); // rollback
+  // const handleSubmit = async () => {
+  //   try {
+  //     if (images.length === 0) {
+  //       toast.error("At least one image is required");
+  //       return;
   //     }
-  //   };
+
+  //     if (
+  //       !form.propertyName ||
+  //       !form.propertyType ||
+  //       !form.address ||
+  //       !form.propertyDetails
+  //     ) {
+  //       toast.error("Please fill all required fields");
+  //       return;
+  //     }
+
+  //     const formData = new FormData();
+
+  //     formData.append("propertyName", form.propertyName);
+  //     formData.append("listingType", form.listingType);
+  //     formData.append("propertyType", form.propertyType);
+  //     formData.append("address", form.address);
+  //     formData.append("subArea", form.subArea);
+  //     formData.append("propertyDetails", form.propertyDetails);
+  //     formData.append("developerName", form.developerName);
+
+  //     // ✅ Convert numbers properly
+  //     formData.append("bedroom", String(Number(form.bedroom)));
+  //     formData.append("bathroom", String(Number(form.bathroom)));
+  //     formData.append("sizeSqft", String(Number(form.sizeSqft)));
+
+  //     // ✅ Send images correctly
+  //     images.forEach((img) => {
+  //       if (img.type === "new") {
+  //         formData.append("propertyImages", img.file);
+  //       }
+  //     });
+
+  //     if (brochure) {
+  //       formData.append("propertyBrochure", brochure);
+  //     }
+
+  //     if (editing) {
+  //       await axios.put(
+  //         `${API_BASE_URL}/api/property/${editing._id}`,
+  //         formData,
+  //       );
+  //       toast.success("Property updated");
+  //     } else {
+  //       await axios.post(`${API_BASE_URL}/api/property`, formData);
+  //       toast.success("Property created");
+  //     }
+
+  //     closeForm();
+  //     fetchProperties();
+  //   } catch (error: any) {
+  //     console.error(error.response?.data);
+  //     toast.error(error.response?.data?.message || "Operation failed");
+  //   }
+  // };
 
   const handleSubmit = async () => {
     try {
@@ -177,9 +267,11 @@ const PropertyManagement = () => {
 
       if (
         !form.propertyName ||
+        !form.slug ||
         !form.propertyType ||
         !form.address ||
-        !form.propertyDetails
+        !form.propertyDetails ||
+        !form.price
       ) {
         toast.error("Please fill all required fields");
         return;
@@ -187,34 +279,59 @@ const PropertyManagement = () => {
 
       const formData = new FormData();
 
+      /* BASIC INFO */
       formData.append("propertyName", form.propertyName);
+      formData.append("slug", form.slug);
       formData.append("listingType", form.listingType);
       formData.append("propertyType", form.propertyType);
       formData.append("address", form.address);
       formData.append("subArea", form.subArea);
+      formData.append("developerName", form.developerName);
       formData.append("propertyDetails", form.propertyDetails);
 
-      // ✅ Convert numbers properly
+      /* NUMBERS */
+      formData.append("price", String(Number(form.price)));
       formData.append("bedroom", String(Number(form.bedroom)));
       formData.append("bathroom", String(Number(form.bathroom)));
       formData.append("sizeSqft", String(Number(form.sizeSqft)));
 
-      // ✅ Send images correctly
+      /* OPTIONAL TEXT FIELDS */
+      if (form.highlights) formData.append("highlights", form.highlights);
+
+      if (form.featuresAmenities)
+        formData.append("featuresAmenities", form.featuresAmenities);
+
+      if (form.nearby) formData.append("nearby", form.nearby);
+
+      if (form.extraHighlights)
+        formData.append("extraHighlights", form.extraHighlights);
+
+      if (form.videoLink) formData.append("videoLink", form.videoLink);
+
+      if (form.googleMapUrl) formData.append("googleMapUrl", form.googleMapUrl);
+
+      /* IMAGES */
       images.forEach((img) => {
         if (img.type === "new") {
           formData.append("propertyImages", img.file);
         }
       });
 
+      /* BROCHURE */
+      if (brochure) {
+        formData.append("propertyBrochure", brochure);
+      }
+
+      /* API CALL */
       if (editing) {
         await axios.put(
           `${API_BASE_URL}/api/property/${editing._id}`,
           formData,
         );
-        toast.success("Property updated");
+        toast.success("Property updated successfully");
       } else {
         await axios.post(`${API_BASE_URL}/api/property`, formData);
-        toast.success("Property created");
+        toast.success("Property created successfully");
       }
 
       closeForm();
@@ -259,37 +376,37 @@ const PropertyManagement = () => {
 
   /* ================= FORM HELPERS ================= */
 
-  //   const openEdit = (p: Property) => {
-  //     setEditing(p);
-  //     setForm({
-  //       propertyName: p.propertyName,
-  //       listingType: p.listingType,
-  //       propertyType: p.propertyType,
-  //       address: p.address,
-  //       subArea: p.subArea,
-  //       bedroom: String(p.bedroom),
-  //       bathroom: String(p.bathroom),
-  //       sizeSqft: String(p.sizeSqft),
-  //       propertyDetails: String(p.propertyDetails),
-  //       propertyImages: [],
-  //     });
-  //     setFormOpen(true);
-  //   };
-
   const openEdit = (p: Property) => {
     setEditing(p);
 
     setForm({
       propertyName: p.propertyName,
+      slug: p.slug,
       listingType: p.listingType,
       propertyType: p.propertyType,
-      address: p.address,
-      subArea: p.subArea || "",
+
+      price: String(p.price),
+
       bedroom: String(p.bedroom),
       bathroom: String(p.bathroom),
       sizeSqft: String(p.sizeSqft),
+
+      address: p.address,
+      subArea: p.subArea || "",
+
+      developerName: p.developerName,
       propertyDetails: p.propertyDetails,
+
+      highlights: p.highlights?.join(", ") || "",
+      featuresAmenities: p.featuresAmenities?.join(", ") || "",
+      nearby: p.nearby?.join(", ") || "",
+      extraHighlights: p.extraHighlights?.join(", ") || "",
+
+      videoLink: p.videoLink || "",
+      googleMapUrl: p.googleMapUrl || "",
+
       propertyImages: [],
+      propertyBrochure: null,
     });
 
     setImages(
@@ -306,18 +423,71 @@ const PropertyManagement = () => {
   const closeForm = () => {
     setFormOpen(false);
     setEditing(null);
+
     setForm({
       propertyName: "",
+      slug: "",
       listingType: "buy",
       propertyType: "",
-      subArea: "",
-      address: "",
+
+      price: "",
+
       bedroom: "",
       bathroom: "",
       sizeSqft: "",
+
+      address: "",
+      subArea: "",
+
+      developerName: "",
       propertyDetails: "",
+
+      highlights: "",
+      featuresAmenities: "",
+      nearby: "",
+      extraHighlights: "",
+
+      videoLink: "",
+      googleMapUrl: "",
+
       propertyImages: [],
+      propertyBrochure: null,
     });
+
+    setImages([]);
+    setBrochure(null);
+  };
+
+  const openDeleteConfirm = (property: Property) => {
+    setSelectedProperty(property);
+    setConfirmAction("delete");
+    setConfirmOpen(true);
+  };
+
+  const openStatusConfirm = (property: Property) => {
+    setSelectedProperty(property);
+    setConfirmAction("status");
+    setConfirmOpen(true);
+  };
+
+  const closeConfirm = () => {
+    setConfirmOpen(false);
+    setSelectedProperty(null);
+    setConfirmAction(null);
+  };
+
+  const handleConfirm = async () => {
+    if (!selectedProperty || !confirmAction) return;
+
+    if (confirmAction === "delete") {
+      await deleteProperty(selectedProperty._id);
+    }
+
+    if (confirmAction === "status") {
+      await toggleStatus(selectedProperty);
+    }
+
+    closeConfirm();
   };
 
   /* ================= PAGINATED DATA ================= */
@@ -386,13 +556,14 @@ const PropertyManagement = () => {
                       Edit
                     </button>
                     <button
-                      onClick={() => toggleStatus(p)}
+                      onClick={() => openStatusConfirm(p)}
                       className="bg-yellow-600 px-2 py-1 rounded"
                     >
-                      Toggle
+                      Status
                     </button>
+
                     <button
-                      onClick={() => deleteProperty(p._id)}
+                      onClick={() => openDeleteConfirm(p)}
                       className="bg-red-600 px-2 py-1 rounded"
                     >
                       Delete
@@ -433,20 +604,47 @@ const PropertyManagement = () => {
             <div className="p-6 space-y-6">
               {/* FORM */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  ["Property Name", "propertyName"],
-                  ["Property Type", "propertyType"],
-                ].map(([label, key]) => (
-                  <input
-                    key={key}
-                    placeholder={label}
-                    className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
-                    value={(form as any)[key]}
-                    onChange={(e) =>
-                      setForm({ ...form, [key]: e.target.value })
-                    }
-                  />
-                ))}
+                {/* PROPERTY NAME */}
+                <input
+                  placeholder="Property Name"
+                  className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                  value={form.propertyName}
+                  onChange={(e) => {
+                    const value = e.target.value;
+
+                    setForm((prev) => ({
+                      ...prev,
+                      propertyName: value,
+                      slug: editing ? prev.slug : generateSlug(value),
+                    }));
+                  }}
+                />
+
+                {/* PROPERTY TYPE */}
+                <select
+                  className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                  value={form.propertyType}
+                  onChange={(e) =>
+                    setForm({ ...form, propertyType: e.target.value })
+                  }
+                >
+                  <option value="">Select Property Type</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="Builder Floor">Builder Floor</option>
+                  <option value="Villa">Villa</option>
+                  <option value="Plot">Plot</option>
+                  <option value="FarmHouse">FarmHouse</option>
+                </select>
+
+                {/* SLUG */}
+                <input
+                  placeholder="Slug (auto-generated)"
+                  className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                  value={form.slug}
+                  onChange={(e) =>
+                    setForm({ ...form, slug: generateSlug(e.target.value) })
+                  }
+                />
 
                 <select
                   className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
@@ -459,9 +657,9 @@ const PropertyManagement = () => {
                   }
                 >
                   <option value="buy">Buy</option>
-                  <option value="sell">Sell</option>
+                  {/* <option value="sell">Sell</option> */}
                   <option value="rent">Rent</option>
-                  <option value="offPlan">Off Plan</option>
+                  {/* <option value="offPlan">Off Plan</option> */}
                 </select>
 
                 <input
@@ -485,8 +683,16 @@ const PropertyManagement = () => {
                 />
 
                 <input
+                  type="number"
+                  placeholder="Price"
+                  className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                  value={form.price}
+                  onChange={(e) => setForm({ ...form, price: e.target.value })}
+                />
+
+                <input
                   type="string"
-                  placeholder="Size"
+                  placeholder="Size (sqft)"
                   className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
                   value={form.sizeSqft}
                   onChange={(e) =>
@@ -515,7 +721,7 @@ const PropertyManagement = () => {
                 />
 
                 <textarea
-                  placeholder="Property Details"
+                  placeholder="Property Description"
                   className="bg-gray-800 border border-gray-700 rounded px-3 py-2 md:col-span-2 min-h-[100px]"
                   value={form.propertyDetails}
                   onChange={(e) =>
@@ -527,6 +733,72 @@ const PropertyManagement = () => {
                 />
               </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <textarea
+                  placeholder="Highlights (comma separated)"
+                  className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                  value={form.highlights}
+                  onChange={(e) =>
+                    setForm({ ...form, highlights: e.target.value })
+                  }
+                />
+
+                <textarea
+                  placeholder="Features & Amenities (comma separated)"
+                  className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                  value={form.featuresAmenities}
+                  onChange={(e) =>
+                    setForm({ ...form, featuresAmenities: e.target.value })
+                  }
+                />
+
+                <textarea
+                  placeholder="Nearby (comma separated)"
+                  className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                  value={form.nearby}
+                  onChange={(e) => setForm({ ...form, nearby: e.target.value })}
+                />
+
+                <textarea
+                  placeholder="Extra Highlights (comma separated)"
+                  className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                  value={form.extraHighlights}
+                  onChange={(e) =>
+                    setForm({ ...form, extraHighlights: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input
+                  placeholder="Video / Reel Link"
+                  className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                  value={form.videoLink}
+                  onChange={(e) =>
+                    setForm({ ...form, videoLink: e.target.value })
+                  }
+                />
+
+                <input
+                  placeholder="Google Map URL"
+                  className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                  value={form.googleMapUrl}
+                  onChange={(e) =>
+                    setForm({ ...form, googleMapUrl: e.target.value })
+                  }
+                />
+              </div>
+
+              <input
+                type="string"
+                placeholder="Developer Name"
+                className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
+                value={form.developerName}
+                onChange={(e) =>
+                  setForm({ ...form, developerName: e.target.value })
+                }
+              />
+
               {/* IMAGE UPLOAD */}
               <div>
                 <label className="block mb-2 text-sm text-gray-400">
@@ -535,6 +807,7 @@ const PropertyManagement = () => {
 
                 <input
                   type="file"
+                  className="cursor-pointer"
                   multiple
                   accept="image/*"
                   onChange={(e) => handleImages(e.target.files)}
@@ -569,6 +842,45 @@ const PropertyManagement = () => {
                   Drag to reorder • Click ✕ to remove
                 </p>
               </div>
+
+              {/* BROCHURE UPLOAD */}
+              <div>
+                <label className="block mb-2 text-sm text-gray-400">
+                  Property Brochure (PDF • Max 10MB)
+                </label>
+
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+
+                    if (file.size > 10 * 1024 * 1024) {
+                      alert("PDF must be less than 10MB");
+                      return;
+                    }
+
+                    setBrochure(file);
+                  }}
+                  className="block w-full text-sm text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-gray-700 file:text-white hover:file:bg-gray-600"
+                />
+
+                {brochure && (
+                  <div className="mt-2 flex items-center justify-between bg-gray-800 border border-gray-700 rounded px-3 py-2">
+                    <span className="text-sm text-gray-300 truncate">
+                      📄 {brochure.name}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setBrochure(null)}
+                      className="text-xs text-red-400 hover:text-red-300"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* ACTIONS */}
@@ -584,6 +896,64 @@ const PropertyManagement = () => {
                 className="bg-indigo-600 hover:bg-indigo-700 px-5 py-2 rounded"
               >
                 {editing ? "Update Property" : "Create Property"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Confirmation Models */}
+      {confirmOpen && selectedProperty && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl w-full max-w-md">
+            <div className="p-5 border-b border-gray-800">
+              <h3 className="text-lg font-semibold">
+                {confirmAction === "delete"
+                  ? "Delete Property"
+                  : selectedProperty.status
+                    ? "Deactivate Property"
+                    : "Activate Property"}
+              </h3>
+            </div>
+
+            <div className="p-5 text-sm text-gray-300 space-y-3">
+              {confirmAction === "delete" ? (
+                <p>
+                  Are you sure you want to permanently delete
+                  <span className="font-semibold text-white">
+                    {" "}
+                    {selectedProperty.propertyName}
+                  </span>
+                  ? This action cannot be undone.
+                </p>
+              ) : (
+                <p>
+                  Are you sure you want to{" "}
+                  <span className="font-semibold text-white">
+                    {selectedProperty.status ? "deactivate" : "activate"}
+                  </span>{" "}
+                  this property?
+                </p>
+              )}
+            </div>
+
+            <div className="flex justify-end gap-3 p-5 border-t border-gray-800">
+              <button
+                onClick={closeConfirm}
+                className="px-4 py-2 border border-gray-700 rounded"
+              >
+                Cancel
+              </button>
+
+              <button
+                onClick={handleConfirm}
+                className={`px-4 py-2 rounded ${
+                  confirmAction === "delete"
+                    ? "bg-red-600 hover:bg-red-700"
+                    : "bg-yellow-600 hover:bg-yellow-700"
+                }`}
+              >
+                Confirm
               </button>
             </div>
           </div>

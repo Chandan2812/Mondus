@@ -86,3 +86,7 @@ input[type="number"] {
 .animate-fadeIn {
   animation: fadeIn 0.2s ease-out;
 }
+
+.filter {
+  @apply border px-3 py-2 rounded dark:bg-neutral-800 dark:text-white;
+}
