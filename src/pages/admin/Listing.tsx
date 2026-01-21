@@ -23,11 +23,15 @@ const AdminListings = () => {
       .catch((err) => console.error("Error fetching listings:", err));
   }, []);
 
+  console.log(listings);
+
   return (
     <div className="h-screen bg-black text-white font-raleway flex flex-col p-0">
       {/* Header */}
       <div className="sticky top-5 z-20 bg-black p-4 sm:p-6 border-b border-gray-700">
-        <h1 className="text-2xl sm:text-3xl font-bold">Property Listings</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold">
+          Property Listing Requests
+        </h1>
       </div>
 
       {/* Table */}

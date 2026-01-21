@@ -36,7 +36,7 @@ const Buy: React.FC = () => {
         } else {
           // Fetch fresh data and cache it
           const response = await fetch(
-            "https://mondus-backend.onrender.com/api/properties/sale"
+            "https://mondus-backend.onrender.com/api/properties/sale",
           );
           const data = await response.json();
           setSentData(data);
@@ -53,11 +53,11 @@ const Buy: React.FC = () => {
     fetchData();
   }, []);
   const uniquePropertyTypes = Array.from(
-    new Set(saleData.map((p) => p.properties.property_type))
+    new Set(saleData.map((p) => p.properties.property_type)),
   ).filter(Boolean);
 
   const uniqueSubareas = Array.from(
-    new Set(saleData.map((p) => p.properties.link_subarea))
+    new Set(saleData.map((p) => p.properties.link_subarea)),
   ).filter(Boolean);
 
   const properties = saleData.filter((property) => {

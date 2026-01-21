@@ -23,7 +23,7 @@ const PropertyForm: React.FC<Props> = ({ onClose }) => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -48,7 +48,9 @@ const PropertyForm: React.FC<Props> = ({ onClose }) => {
 
       if (res.ok) {
         console.log("✅ Property submitted:", data);
-        setSuccessMsg("Your property listing has been submitted successfully!");
+        setSuccessMsg(
+          "Your property details has been submitted successfully! We’ll be reaching out to you soon.",
+        );
         setFormData({
           name: "",
           email: "",

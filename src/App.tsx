@@ -47,6 +47,7 @@ import Opportunity from "./pages/admin/Opportunity";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminProtectedRoute from "./pages/admin/Adminprotectedroute";
 import { Toaster } from "react-hot-toast";
+import PropertyManagement from "./pages/admin/PropertyManagement";
 
 // ✅ Custom wrapper to access location inside App
 function AppWrapper() {
@@ -88,6 +89,10 @@ function AppWrapper() {
           <Route element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="newsletter" element={<NewsletterPage />} />
+            <Route
+              path="property-management"
+              element={<PropertyManagement />}
+            />
             <Route path="emailer" element={<EmailerPage />} />
             <Route path="subscriber" element={<AdminSubscriber />} />
             <Route path="contacts" element={<AdminContactRequest />} />

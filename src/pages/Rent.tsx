@@ -37,7 +37,7 @@ const Rent: React.FC = () => {
         } else {
           // Fetch fresh data and cache it
           const response = await fetch(
-            "https://mondus-backend.onrender.com/api/properties/rent"
+            "https://mondus-backend.onrender.com/api/properties/rent",
           );
           const data = await response.json();
           setRentData(data);
@@ -102,7 +102,7 @@ const Rent: React.FC = () => {
         </Suspense>
       </div>
 
-      <h1 className="text-2xl text-center">PROPERTIES FOR SALE IN DUBAI</h1>
+      <h1 className="text-2xl text-center">PROPERTIES FOR RENT IN DUBAI</h1>
       <div className="flex flex-wrap justify-center gap-3 mt-4 px-4">
         <select
           className="border p-2 rounded dark:bg-neutral-800 dark:text-white"
@@ -137,7 +137,7 @@ const Rent: React.FC = () => {
           <option value="">All Subareas</option>
           {[
             ...new Set(
-              rentData.map((p) => p.properties?.link_subarea).filter(Boolean)
+              rentData.map((p) => p.properties?.link_subarea).filter(Boolean),
             ),
           ]
             .sort()
@@ -157,7 +157,7 @@ const Rent: React.FC = () => {
           <option value="">All Property Types</option>
           {[
             ...new Set(
-              rentData.map((p) => p.properties?.property_type).filter(Boolean)
+              rentData.map((p) => p.properties?.property_type).filter(Boolean),
             ),
           ]
             .sort()

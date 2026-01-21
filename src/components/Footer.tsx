@@ -78,8 +78,9 @@ const Footer = () => {
         {/* Right: Contact Info */}
         <div className="space-y-4 lg:text-right">
           <h3 className="text-lg">Dubai, UAE</h3>
-          <p className="text-gray-700 dark:text-gray-200">
-            Mondus Group Iris Bay 2402 , Business Bay , Dubai
+          <p className="text-gray-700 dark:text-gray-200 md:max-w-xs">
+            Stadium point tower - 305 office number - AI Hebiah Fourth - Dubai
+            Sports City - Dubai
           </p>
           <div className="flex justify-start lg:justify-end gap-4 pt-2 text-[var(--primary-color)] text-xl">
             <a
@@ -119,7 +120,7 @@ const Footer = () => {
             </a>
 
             <a
-              href="https://www.instagram.com/mondusproperties/"
+              href="https://www.instagram.com/monduspropertiesllc"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white hover:bg-gray-700 p-2 rounded"
@@ -160,7 +161,7 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          <div className="w-full flex justify-center mt-2">
+          {/* <div className="w-full flex justify-center mt-2">
             <a
               href="https://www.bigwigdigital.in/"
               target="_blank"
@@ -169,20 +170,20 @@ const Footer = () => {
             >
               Made & Marketed with ❤️ by Bigwig Digital
             </a>
-          </div>
+          </div> */}
         </div>
 
         {/* Desktop View (hidden on small screens) */}
         <div className="hidden sm:flex flex-row justify-between items-center w-full">
           <span>Mondus ©2025 All Rights Reserved</span>
-          <a
+          {/* <a
             href="https://www.bigwigmediadigital.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="border border-[var(--primary-color)] text-[var(--primary-color)] px-4 py-3 uppercase text-sm tracking-widest  text-center"
           >
             Made & Marketed with ❤️ by Bigwig Media Digital
-          </a>
+          </a> */}
           <div className="flex gap-4">
             {["Terms of Use", "Privacy Policy"].map((item, idx) => (
               <a

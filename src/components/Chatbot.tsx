@@ -186,6 +186,8 @@ const Chatbot: React.FC = () => {
     }
   };
 
+  // integrating Talk.io chatbot
+
   return (
     <div>
       {/* Floating Button */}

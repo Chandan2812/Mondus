@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const ADMIN_USER = "admin@mondas.com";
@@ -15,9 +16,11 @@ const AdminLogin = () => {
 
     if (email === ADMIN_USER && password === ADMIN_PASS) {
       localStorage.setItem("adminAuth", "true"); // simple auth
+      toast.success("Logged in successfully");
       navigate("/admin");
     } else {
       setError("Invalid credentials");
+      toast.error("invalid credentials");
     }
   };
 
@@ -27,7 +30,9 @@ const AdminLogin = () => {
         onSubmit={handleLogin}
         className="bg-[#111] p-8 rounded-md w-full max-w-sm border border-gray-700"
       >
-        <h1 className="text-2xl font-bold mb-6">Admin Login</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center">
+          Mondas Admin Portal
+        </h1>
 
         <input
           type="email"

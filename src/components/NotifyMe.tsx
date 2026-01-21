@@ -93,7 +93,9 @@ const NotifyMe = ({ onVerified }: NotifyMeProps) => {
 
       if (res.ok) {
         sessionStorage.setItem("formData", JSON.stringify(formData));
-        setMessage("✅ OTP verified. Data submitted successfully.");
+        setMessage(
+          "✅ OTP verified & details submitted successfully. We will get in touch with you shortly.",
+        );
         setFormData({
           purpose: "Buy",
           category: "Apartment",
