@@ -73,7 +73,7 @@ const RentDetails = () => {
   /* ================= SAFE DATA ================= */
   const images: string[] = property.propertyImages || [];
 
-  const [lng, lat] = property.geopoints?.split(",").map(Number) || [];
+  // const [lng, lat] = property.geopoints?.split(",").map(Number) || [];
 
   /* ================= SLIDER ARROWS ================= */
   const Arrow = ({
