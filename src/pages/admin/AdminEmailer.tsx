@@ -21,6 +21,8 @@ interface Emailer {
   updatedAt: string;
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 const AdminEmailer = () => {
   const [emailers, setEmailers] = useState<Emailer[]>([]);
   const [expandedRecipients, setExpandedRecipients] = useState<
@@ -31,7 +33,7 @@ const AdminEmailer = () => {
   >({});
 
   useEffect(() => {
-    fetch("https://mondus-backend.onrender.com/emailer")
+    fetch(`${API_BASE}/emailer`)
       .then((res) => res.json())
       .then((data) => setEmailers(data));
   }, []);

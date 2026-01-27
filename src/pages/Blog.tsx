@@ -18,6 +18,8 @@ interface BlogPost {
   lastUpdated: string;
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 const Blog = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,9 +29,10 @@ const Blog = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch(
-          "https://mondus-backend.onrender.com/api/blogs/viewblog",
-        );
+        // const res = await fetch(
+        //   "https://mondus-backend.onrender.com/api/blogs/viewblog",
+        // );
+        const res = await fetch(`${API_BASE}/api/blogs/viewblog`);
         const data = await res.json();
         setBlogs(data);
         console.log(data);

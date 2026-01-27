@@ -14,17 +14,20 @@ interface Newsletter {
   sentAt?: string;
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 const NewsletterPage = () => {
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
   const [expandedEmails, setExpandedEmails] = useState<Record<string, boolean>>(
-    {}
+    {},
   );
   const [expandedContent, setExpandedContent] = useState<
     Record<string, boolean>
   >({});
 
   useEffect(() => {
-    fetch("https://mondus-backend.onrender.com/newsletter")
+    // fetch("https://mondus-backend.onrender.com/newsletter")
+    fetch(`${API_BASE}/newsletter`)
       .then((res) => res.json())
       .then((data) => setNewsletters(data));
   }, []);

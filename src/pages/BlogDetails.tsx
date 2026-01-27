@@ -15,6 +15,8 @@ interface BlogType {
   slug: string;
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL + "/api/blogs";
+
 const BlogDetails = () => {
   const { slug } = useParams<{ slug: string }>();
   const [blog, setBlog] = useState<BlogType | null>(null);
@@ -26,9 +28,7 @@ const BlogDetails = () => {
       setLoading(true);
       setError("");
       try {
-        const res = await axios.get(
-          `https://mondus-backend.onrender.com/api/blogs/viewblog`,
-        );
+        const res = await axios.get(`${API_BASE}/viewblog`);
         const blogList: BlogType[] = res.data;
         console.log("Fetched blogs:", blogList);
 

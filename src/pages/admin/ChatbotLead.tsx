@@ -8,12 +8,15 @@ interface Chat {
   createdAt: string;
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 const ChatbotLead = () => {
   const [chats, setChats] = useState<Chat[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://mondus-backend.onrender.com/api/chatbot")
+    // fetch("https://mondus-backend.onrender.com/api/chatbot")
+    fetch(`${API_BASE}/api/chatbot`)
       .then((res) => res.json())
       .then((data) => setChats(data))
       .catch((err) => console.error("Error fetching chatbot history:", err))

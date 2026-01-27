@@ -6,11 +6,14 @@ interface Subscriber {
   createdAt: string;
 }
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 const AdminSubscriber = () => {
   const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
 
   useEffect(() => {
-    fetch("https://mondus-backend.onrender.com/subscribers")
+    // fetch("https://mondus-backend.onrender.com/subscribers")
+    fetch(`${API_BASE}/subscribers`)
       .then((res) => res.json())
       .then((data) => setSubscribers(data))
       .catch((err) => console.error("Error fetching subscribers:", err));

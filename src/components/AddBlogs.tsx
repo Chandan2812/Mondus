@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-const API_BASE = "https://mondus-backend.onrender.com/api/blogs";
+// const API_BASE = "https://mondus-backend.onrender.com/api/blogs";
+const API_BASE = import.meta.env.VITE_API_BASE_URL + "/api/blogs";
 
 interface BlogPost {
   _id?: string;
@@ -48,7 +49,7 @@ const AddBlog = ({
   }, [existingBlog]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
 
@@ -102,13 +103,15 @@ const AddBlog = ({
       const data = await res.json();
       if (res.ok) {
         alert(
-          existingBlog ? "Blog updated successfully" : "Blog added successfully"
+          existingBlog
+            ? "Blog updated successfully"
+            : "Blog added successfully",
         );
         onSuccess();
         onClose();
       } else {
         alert(
-          data.error || `Failed to ${existingBlog ? "update" : "add"} blog`
+          data.error || `Failed to ${existingBlog ? "update" : "add"} blog`,
         );
       }
     } catch (err) {
@@ -206,8 +209,8 @@ const AddBlog = ({
                   ? "Updating..."
                   : "Adding..."
                 : existingBlog
-                ? "Update"
-                : "Submit"}
+                  ? "Update"
+                  : "Submit"}
             </button>
           </div>
         </form>

@@ -10,7 +10,8 @@ interface OpportunityType {
   postedAt: string;
 }
 
-const baseURL = "http://localhost:8000/api/opportunity";
+// const baseURL = "http://localhost:8000/api/opportunity";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 const Opportunity = () => {
   const [opportunities, setOpportunities] = useState<OpportunityType[]>([]);
@@ -20,7 +21,8 @@ const Opportunity = () => {
   const [formData, setFormData] = useState<Partial<OpportunityType>>({});
 
   useEffect(() => {
-    fetch(baseURL)
+    // fetch(baseURL)
+    fetch(`${API_BASE}/api/opportunity`)
       .then((res) => res.json())
       .then((data) => setOpportunities(data))
       .catch((err) => console.error("Error fetching opportunities:", err));
@@ -40,7 +42,7 @@ const Opportunity = () => {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -48,7 +50,9 @@ const Opportunity = () => {
   const handleSubmit = () => {
     setLoading(true);
     const method = isEditing ? "PUT" : "POST";
-    const url = isEditing ? `${baseURL}/${formData._id}` : baseURL;
+    const url = isEditing
+      ? `${API_BASE}/api/opportunity/${formData._id}`
+      : `${API_BASE}/api/opportunity`;
 
     fetch(url, {
       method,
@@ -59,7 +63,7 @@ const Opportunity = () => {
       .then((data) => {
         if (isEditing) {
           setOpportunities((prev) =>
-            prev.map((op) => (op._id === data._id ? data : op))
+            prev.map((op) => (op._id === data._id ? data : op)),
           );
         } else {
           setOpportunities((prev) => [data, ...prev]);
@@ -70,9 +74,11 @@ const Opportunity = () => {
 
   const handleDelete = (id: string) => {
     if (!confirm("Are you sure you want to delete this opportunity?")) return;
-    fetch(`${baseURL}/${id}`, { method: "DELETE" }).then(() => {
-      setOpportunities((prev) => prev.filter((op) => op._id !== id));
-    });
+    fetch(`${API_BASE}/api/opportunity/${id}`, { method: "DELETE" }).then(
+      () => {
+        setOpportunities((prev) => prev.filter((op) => op._id !== id));
+      },
+    );
   };
 
   const truncate = (str: string, n = 60) =>

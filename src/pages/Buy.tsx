@@ -47,6 +47,8 @@ const Buy: React.FC = () => {
     fetchProperties();
   }, []);
 
+  // console.log(saleData);
+
   /* ---------------- Filter Options ---------------- */
   const uniquePropertyTypes = useMemo(
     () =>
@@ -199,7 +201,7 @@ const Buy: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {properties.map((property) => (
               <Link
-                to={`/buy/${property._id}`}
+                to={`/buy/${property.slug}`}
                 key={property._id}
                 className="h-full"
               >

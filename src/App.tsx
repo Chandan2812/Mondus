@@ -62,9 +62,9 @@ function AppWrapper() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/buy" element={<Buy />} />
-        <Route path="/buy/:id" element={<BuyDetails />} />
+        <Route path="/buy/:idOrSlug" element={<BuyDetails />} />
         <Route path="/rent" element={<Rent />} />
-        <Route path="/rent/:id" element={<RentDetails />} />
+        <Route path="/rent/:idOrSlug" element={<RentDetails />} />
         <Route path="/agents/:id" element={<AgentDetail />} />
         <Route path="/AgentsSection" element={<AgentsSection />} />
         <Route path="/offplan" element={<OffPlan />} />

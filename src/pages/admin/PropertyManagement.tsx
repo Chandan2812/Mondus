@@ -198,6 +198,7 @@ const PropertyManagement = () => {
   const [viewOpen, setViewOpen] = useState(false);
   const [viewProperty, setViewProperty] = useState<Property | null>(null);
   const [viewLoading, setViewLoading] = useState(false);
+  const [slugTouched, setSlugTouched] = useState(false);
 
   // Optional: normalize URLs (supports absolute + relative)
   const toAssetUrl = (path?: string | null) => {
@@ -353,6 +354,7 @@ const PropertyManagement = () => {
 
   const openEdit = (p: Property) => {
     setEditing(p);
+    setSlugTouched(false);
 
     setForm({
       propertyName: p.propertyName,
@@ -398,6 +400,7 @@ const PropertyManagement = () => {
   const closeForm = () => {
     setFormOpen(false);
     setEditing(null);
+    setSlugTouched(false);
 
     setForm({
       propertyName: "",
@@ -590,13 +593,21 @@ const PropertyManagement = () => {
                   placeholder="Property Name"
                   className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
                   value={form.propertyName}
+                  // onChange={(e) => {
+                  //   const value = e.target.value;
+
+                  //   setForm((prev) => ({
+                  //     ...prev,
+                  //     propertyName: value,
+                  //     slug: editing ? prev.slug : generateSlug(value),
+                  //   }));
+                  // }}
                   onChange={(e) => {
                     const value = e.target.value;
-
                     setForm((prev) => ({
                       ...prev,
                       propertyName: value,
-                      slug: editing ? prev.slug : generateSlug(value),
+                      slug: slugTouched ? prev.slug : generateSlug(value),
                     }));
                   }}
                 />
@@ -622,9 +633,13 @@ const PropertyManagement = () => {
                   placeholder="Slug (auto-generated)"
                   className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
                   value={form.slug}
-                  onChange={(e) =>
-                    setForm({ ...form, slug: generateSlug(e.target.value) })
-                  }
+                  // onChange={(e) =>
+                  //   setForm({ ...form, slug: generateSlug(e.target.value) })
+                  // }
+                  onChange={(e) => {
+                    setSlugTouched(true);
+                    setForm({ ...form, slug: generateSlug(e.target.value) });
+                  }}
                 />
 
                 <select

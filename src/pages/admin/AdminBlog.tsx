@@ -27,7 +27,7 @@ const toolbarOptions = [
   ["link"],
 ];
 
-const API_BASE = "https://mondus-backend.onrender.com/api/blogs";
+const API_BASE = import.meta.env.VITE_API_BASE_URL + "/api/blogs";
 
 const AdminBlog = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
@@ -43,12 +43,17 @@ const AdminBlog = () => {
     setLoading(true);
     try {
       const res = await fetch(`${API_BASE}/viewblog`);
-      const data = await res.json();
-      setBlogs(data);
+      const json = await res.json();
+
+      // ✅ normalize response
+      const blogsArray = Array.isArray(json) ? json : json.data || [];
+      setBlogs(blogsArray);
     } catch (error) {
       console.error("Failed to fetch blogs", error);
+      setBlogs([]);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -60,9 +65,7 @@ const AdminBlog = () => {
       return;
 
     try {
-      const res = await fetch(`${API_BASE}/${slug}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(`${API_BASE}/${slug}`, { method: "DELETE" });
       const json = await res.json();
       if (res.ok) {
         alert(json.msg || "Deleted successfully");
@@ -234,7 +237,7 @@ const AdminBlog = () => {
                         body: JSON.stringify({
                           content: editorContent,
                         }),
-                      }
+                      },
                     );
 
                     if (!res.ok)
@@ -246,7 +249,7 @@ const AdminBlog = () => {
                   } catch (error) {
                     console.error(error);
                     alert(
-                      "An error occurred while updating the blog. Please try again."
+                      "An error occurred while updating the blog. Please try again.",
                     );
                   } finally {
                     setSaving(false);
