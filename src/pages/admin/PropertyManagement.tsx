@@ -194,69 +194,44 @@ const PropertyManagement = () => {
     setImages(list);
   };
 
+  // View modal
+  const [viewOpen, setViewOpen] = useState(false);
+  const [viewProperty, setViewProperty] = useState<Property | null>(null);
+  const [viewLoading, setViewLoading] = useState(false);
+
+  // Optional: normalize URLs (supports absolute + relative)
+  const toAssetUrl = (path?: string | null) => {
+    if (!path) return "";
+    if (path.startsWith("http")) return path;
+    return `${API_BASE_URL}${path}`; // API_BASE_URL like https://domain.com
+  };
+
+  const openView = async (p: Property) => {
+    // ✅ Optimistic UI: show immediately
+    setViewProperty(p);
+    setViewOpen(true);
+
+    // Optional: background refresh (if you have GET by id endpoint)
+    // If you don't have this endpoint, remove this block.
+    try {
+      setViewLoading(true);
+      const res = await axios.get(`${API_BASE_URL}/api/property/${p._id}`);
+      const fresh = res.data?.data;
+      if (fresh) setViewProperty(fresh);
+    } catch {
+      // keep optimistic data
+    } finally {
+      setViewLoading(false);
+    }
+  };
+
+  const closeView = () => {
+    setViewOpen(false);
+    setViewProperty(null);
+    setViewLoading(false);
+  };
+
   /* ================= CREATE / UPDATE ================= */
-
-  // const handleSubmit = async () => {
-  //   try {
-  //     if (images.length === 0) {
-  //       toast.error("At least one image is required");
-  //       return;
-  //     }
-
-  //     if (
-  //       !form.propertyName ||
-  //       !form.propertyType ||
-  //       !form.address ||
-  //       !form.propertyDetails
-  //     ) {
-  //       toast.error("Please fill all required fields");
-  //       return;
-  //     }
-
-  //     const formData = new FormData();
-
-  //     formData.append("propertyName", form.propertyName);
-  //     formData.append("listingType", form.listingType);
-  //     formData.append("propertyType", form.propertyType);
-  //     formData.append("address", form.address);
-  //     formData.append("subArea", form.subArea);
-  //     formData.append("propertyDetails", form.propertyDetails);
-  //     formData.append("developerName", form.developerName);
-
-  //     // ✅ Convert numbers properly
-  //     formData.append("bedroom", String(Number(form.bedroom)));
-  //     formData.append("bathroom", String(Number(form.bathroom)));
-  //     formData.append("sizeSqft", String(Number(form.sizeSqft)));
-
-  //     // ✅ Send images correctly
-  //     images.forEach((img) => {
-  //       if (img.type === "new") {
-  //         formData.append("propertyImages", img.file);
-  //       }
-  //     });
-
-  //     if (brochure) {
-  //       formData.append("propertyBrochure", brochure);
-  //     }
-
-  //     if (editing) {
-  //       await axios.put(
-  //         `${API_BASE_URL}/api/property/${editing._id}`,
-  //         formData,
-  //       );
-  //       toast.success("Property updated");
-  //     } else {
-  //       await axios.post(`${API_BASE_URL}/api/property`, formData);
-  //       toast.success("Property created");
-  //     }
-
-  //     closeForm();
-  //     fetchProperties();
-  //   } catch (error: any) {
-  //     console.error(error.response?.data);
-  //     toast.error(error.response?.data?.message || "Operation failed");
-  //   }
-  // };
 
   const handleSubmit = async () => {
     try {
@@ -550,6 +525,12 @@ const PropertyManagement = () => {
                   </td>
                   <td className="p-3 flex gap-2 justify-end">
                     <button
+                      onClick={() => openView(p)}
+                      className="bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded"
+                    >
+                      View
+                    </button>
+                    <button
                       onClick={() => openEdit(p)}
                       className="bg-blue-600 px-2 py-1 rounded"
                     >
@@ -591,7 +572,7 @@ const PropertyManagement = () => {
         ))}
       </div>
 
-      {/* ================= MODAL ================= */}
+      {/* ================= Add Form MODAL ================= */}
       {formOpen && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
           <div className="bg-gray-900 rounded-xl w-full max-w-4xl border border-gray-800 overflow-y-auto max-h-[90vh]">
@@ -959,8 +940,267 @@ const PropertyManagement = () => {
           </div>
         </div>
       )}
+
+      {/* ================= VIEW MODAL ================= */}
+      {viewOpen && viewProperty && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 rounded-xl w-full max-w-5xl border border-gray-800 overflow-hidden">
+            {/* Header */}
+            <div className="p-5 border-b border-gray-800 flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-lg sm:text-xl font-semibold">
+                  {viewProperty.propertyName || "Property Details"}
+                </h2>
+                <p className="text-xs text-gray-400 mt-1 break-all">
+                  ID: {viewProperty._id} • Slug: {viewProperty.slug}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {viewLoading && (
+                  <span className="text-xs text-gray-400">Refreshing…</span>
+                )}
+                <button
+                  onClick={closeView}
+                  className="px-3 py-2 rounded bg-gray-800 hover:bg-gray-700 text-sm"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+
+            {/* Body */}
+            <div className="p-5 sm:p-6 max-h-[80vh] overflow-y-auto">
+              {/* Status & Quick stats */}
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <span
+                  className={`px-2 py-1 text-xs rounded ${
+                    viewProperty.status ? "bg-green-600" : "bg-red-600"
+                  }`}
+                >
+                  {viewProperty.status ? "Active" : "Inactive"}
+                </span>
+
+                <span className="text-xs bg-gray-800 border border-gray-700 rounded px-2 py-1">
+                  {viewProperty.listingType?.toUpperCase()}
+                </span>
+
+                <span className="text-xs bg-gray-800 border border-gray-700 rounded px-2 py-1">
+                  {viewProperty.propertyType}
+                </span>
+
+                <span className="text-xs text-gray-300">
+                  ₹ {Number(viewProperty.price || 0).toLocaleString("en-IN")}
+                </span>
+              </div>
+
+              {/* Images */}
+              <div className="space-y-2 mb-6">
+                <h3 className="text-sm font-semibold text-gray-200">
+                  Property Images ({viewProperty.propertyImages?.length || 0})
+                </h3>
+
+                {viewProperty.propertyImages?.length ? (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    {viewProperty.propertyImages.map((imgUrl, idx) => (
+                      <a
+                        key={imgUrl + idx}
+                        href={toAssetUrl(imgUrl)}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="relative block rounded-lg overflow-hidden border border-gray-800 bg-gray-800"
+                      >
+                        <img
+                          src={toAssetUrl(imgUrl)}
+                          alt={`Property image ${idx + 1}`}
+                          className="w-full h-28 sm:h-32 md:h-36 object-cover"
+                          loading="lazy"
+                        />
+                      </a>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-xs text-gray-400 bg-gray-800 border border-gray-700 rounded p-3">
+                    No images attached.
+                  </div>
+                )}
+              </div>
+
+              {/* Details grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <InfoRow label="Address" value={viewProperty.address} />
+                <InfoRow label="Sub Area" value={viewProperty.subArea} />
+                <InfoRow label="Developer" value={viewProperty.developerName} />
+                <InfoRow
+                  label="Bedrooms"
+                  value={String(viewProperty.bedroom)}
+                />
+                <InfoRow
+                  label="Bathrooms"
+                  value={String(viewProperty.bathroom)}
+                />
+                <InfoRow
+                  label="Size (sqft)"
+                  value={String(viewProperty.sizeSqft)}
+                />
+                <InfoRow
+                  label="Created"
+                  value={new Date(viewProperty.createdAt).toLocaleString()}
+                />
+                <InfoRow
+                  label="Updated"
+                  value={new Date(viewProperty.updatedAt).toLocaleString()}
+                />
+              </div>
+
+              {/* Property Details */}
+              <div className="mt-6">
+                <h3 className="text-sm font-semibold text-gray-200 mb-2">
+                  Property Details
+                </h3>
+                <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+                  <p className="text-sm text-gray-200 whitespace-pre-wrap leading-relaxed">
+                    {viewProperty.propertyDetails || "—"}
+                  </p>
+                </div>
+              </div>
+
+              {/* Arrays (highlights, amenities, nearby, extraHighlights) */}
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <TagList title="Highlights" items={viewProperty.highlights} />
+                <TagList
+                  title="Features & Amenities"
+                  items={viewProperty.featuresAmenities}
+                />
+                <TagList title="Nearby" items={viewProperty.nearby} />
+                <TagList
+                  title="Extra Highlights"
+                  items={viewProperty.extraHighlights}
+                />
+              </div>
+
+              {/* Links */}
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <LinkRow
+                  title="Video Link"
+                  url={viewProperty.videoLink || ""}
+                />
+                <LinkRow
+                  title="Google Map URL"
+                  url={viewProperty.googleMapUrl || ""}
+                />
+              </div>
+
+              {/* Brochure */}
+              <div className="mt-6">
+                <h3 className="text-sm font-semibold text-gray-200 mb-2">
+                  Brochure (PDF)
+                </h3>
+                {viewProperty.propertyBrochure ? (
+                  <a
+                    href={toAssetUrl(viewProperty.propertyBrochure)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-sm hover:bg-gray-700"
+                  >
+                    📄 Open brochure
+                    <span className="text-xs text-gray-400 break-all">
+                      {viewProperty.propertyBrochure}
+                    </span>
+                  </a>
+                ) : (
+                  <div className="text-xs text-gray-400 bg-gray-800 border border-gray-700 rounded p-3">
+                    No brochure uploaded.
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Footer actions (optional quick actions) */}
+            <div className="p-5 border-t border-gray-800 flex flex-wrap justify-end gap-2">
+              <button
+                onClick={() => {
+                  closeView();
+                  openEdit(viewProperty);
+                }}
+                className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm"
+              >
+                Edit
+              </button>
+
+              <button
+                onClick={() => openStatusConfirm(viewProperty)}
+                className="bg-yellow-600 hover:bg-yellow-700 px-4 py-2 rounded text-sm"
+              >
+                Toggle Status
+              </button>
+
+              <button
+                onClick={() => openDeleteConfirm(viewProperty)}
+                className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-sm"
+              >
+                Delete
+              </button>
+
+              <button
+                onClick={closeView}
+                className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded text-sm"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default PropertyManagement;
+
+const InfoRow = ({ label, value }: { label: string; value?: string }) => (
+  <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+    <p className="text-xs text-gray-400">{label}</p>
+    <p className="text-sm text-gray-100 mt-1 break-words">
+      {value?.trim() ? value : "—"}
+    </p>
+  </div>
+);
+
+const TagList = ({ title, items }: { title: string; items?: string[] }) => (
+  <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+    <p className="text-xs text-gray-400 mb-2">{title}</p>
+    {items?.length ? (
+      <div className="flex flex-wrap gap-2">
+        {items.map((t, i) => (
+          <span
+            key={t + i}
+            className="text-xs bg-gray-900/60 border border-gray-700 px-2 py-1 rounded"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+    ) : (
+      <p className="text-sm text-gray-200">—</p>
+    )}
+  </div>
+);
+
+const LinkRow = ({ title, url }: { title: string; url: string }) => (
+  <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
+    <p className="text-xs text-gray-400 mb-2">{title}</p>
+    {url?.trim() ? (
+      <a
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+        className="text-sm text-indigo-300 hover:text-indigo-200 break-all underline"
+      >
+        {url}
+      </a>
+    ) : (
+      <p className="text-sm text-gray-200">—</p>
+    )}
+  </div>
+);

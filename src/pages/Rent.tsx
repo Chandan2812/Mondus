@@ -1,12 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy, useMemo } from "react";
-import {
-  BedDouble,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  Ruler,
-} from "lucide-react";
+import { BedDouble, MapPin, Ruler } from "lucide-react";
 import { Bath } from "lucide-react";
 import { Link } from "react-router-dom";
 
