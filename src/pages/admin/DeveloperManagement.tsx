@@ -22,8 +22,6 @@ const DeveloperManagement = () => {
   );
 
   /* Form state */
-  const [logo, setLogo] = useState<File | null>(null);
-  const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [slugTouched, setSlugTouched] = useState(false);
 
   const [form, setForm] = useState<DeveloperForm>({
@@ -35,6 +33,7 @@ const DeveloperManagement = () => {
     developerLogo: "",
     establishedYear: undefined,
     totalProjects: undefined,
+    website: "",
   });
 
   /* ================= FETCH ================= */
@@ -123,9 +122,6 @@ const DeveloperManagement = () => {
       totalProjects: d.totalProjects,
       website: d.website,
     });
-
-    setLogo(null);
-    setLogoPreview(d.developerLogo ? toAssetUrl(d.developerLogo) : null);
     setFormOpen(true);
   };
 
@@ -138,8 +134,6 @@ const DeveloperManagement = () => {
     setFormOpen(false);
     setEditing(null);
     setSlugTouched(false);
-    setLogo(null);
-    setLogoPreview(null);
     setForm({
       developerName: "",
       slug: "",
@@ -147,6 +141,7 @@ const DeveloperManagement = () => {
       highlights: "",
       location: "",
       developerLogo: "",
+      website: "",
     });
   };
 
@@ -404,14 +399,14 @@ const DeveloperManagement = () => {
                   }
                 />
 
-                <input
+                {/* <input
                   className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
                   placeholder="Website URL"
                   value={form.website}
                   onChange={(e) =>
                     setForm({ ...form, website: e.target.value })
                   }
-                />
+                /> */}
               </div>
             </div>
 
