@@ -22,7 +22,7 @@ const Developers = () => {
       const res = await axios.get(`${API_BASE_URL}/api/developers`);
       setDevelopers(res.data.data);
     } catch {
-      toast.error("Failed to load developers");
+      toast.error("Failed to load developers details");
     } finally {
       setLoading(false);
     }
