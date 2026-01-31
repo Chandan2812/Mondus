@@ -8,6 +8,8 @@ import {
   FaHome,
 } from "react-icons/fa";
 
+import golden_visa from "../assets/golden-visa-image.jpeg";
+
 const RealEstateExperts: React.FC = () => {
   return (
     <div className="bg-white py-12 text-black dark:bg-black dark:text-white transition-colors font-raleway">
@@ -15,9 +17,9 @@ const RealEstateExperts: React.FC = () => {
         {/* Image section */}
         <div className="relative w-full h-[400px] flex justify-center">
           <img
-            src="https://www.axcapital.ae/_ipx/_/img/real-estate-experts.webp"
+            src={golden_visa}
             alt="Real Estate Experts"
-            className="w-full"
+            className="w-full object-cover"
             draggable="false"
           />
 
@@ -47,24 +49,24 @@ const RealEstateExperts: React.FC = () => {
         {/* Text and stats */}
         <div className="mt-8 md:mt-0">
           <h2 className="text-3xl md:text-3xl font-light mb-6">
-            Luxury Living Starts with{" "}
+            Secure Your Future with{" "}
             <span className="text-[var(--primary-color)]">
-              MONDUS PROPERTIES
+              UAE Golden Visa
             </span>{" "}
           </h2>
 
           <p className="text-gray-600 dark:text-gray-300 mb-6 text-justify">
-            Still searching for your dream home or a secure investment property
-            in Dubai? Explore apartments for sale in UAE, premium Palm Jumeirah
-            villa listings, and exclusive options from Damac Dubai and Emaar
-            Company. We provide full guidance on Dubai house price trends and
-            accurate property rates in Dubai. Recognized as the No. 1 real
-            estate company in Dubai, Mondus Properties helps you invest in real
-            estate with confidence. With professional industry experts and
-            experienced agents, we give you exactly the guidance, insights, and
-            listings you need to make the right move. Find your home in Dubai
-            for sale or secure a high-return investment property Dubai with
-            expert support every step of the way!
+            Looking to obtain a UAE Golden Visa through real estate investment?
+            Mondus Properties offers complete Golden Visa services in Dubai,
+            guiding you through every step of the process. From identifying
+            Golden Visa–eligible properties to handling documentation and
+            approvals, our experts ensure a smooth and stress-free experience.
+            Whether you’re investing in luxury apartments, premium villas, or
+            high-value developments by top UAE developers, we help you qualify
+            for long-term residency with confidence. As a trusted real estate
+            advisory in Dubai, Mondus Properties connects your property
+            investment with residency benefits—so you can live, invest, and grow
+            in the UAE with peace of mind.
           </p>
 
           <a href="/contact">

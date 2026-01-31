@@ -23,21 +23,22 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL;
 const Blog = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+
   const blogsPerPage = 9;
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        // const res = await fetch(
-        //   "https://mondus-backend.onrender.com/api/blogs/viewblog",
-        // );
+        setLoading(true);
         const res = await fetch(`${API_BASE}/api/blogs/viewblog`);
         const data = await res.json();
         setBlogs(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -78,7 +79,16 @@ const Blog = () => {
       </section>
 
       <section className="w-[90%] mx-auto my-16">
-        {blogs?.length === 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div
+                key={i}
+                className="animate-pulse bg-gray-200 dark:bg-gray-800 rounded-lg h-[450px]"
+              />
+            ))}
+          </div>
+        ) : blogs.length === 0 ? (
           <p className="text-center text-gray-500 dark:text-gray-400">
             No blog posts available at the moment.
           </p>

@@ -593,15 +593,6 @@ const PropertyManagement = () => {
                   placeholder="Property Name"
                   className="bg-gray-800 border border-gray-700 rounded px-3 py-2"
                   value={form.propertyName}
-                  // onChange={(e) => {
-                  //   const value = e.target.value;
-
-                  //   setForm((prev) => ({
-                  //     ...prev,
-                  //     propertyName: value,
-                  //     slug: editing ? prev.slug : generateSlug(value),
-                  //   }));
-                  // }}
                   onChange={(e) => {
                     const value = e.target.value;
                     setForm((prev) => ({

@@ -20,7 +20,7 @@ const RealStateInsights = () => {
     const fetchBlogs = async () => {
       try {
         const res = await axios.get(
-          "https://mondus-backend.onrender.com/api/blogs/viewblog"
+          "https://mondus-backend.onrender.com/api/blogs/viewblog",
         );
         setBlogs(res.data);
       } catch (error) {

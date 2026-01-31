@@ -1,6 +1,7 @@
 // import { useState } from "react";
-import hero from "../assets/frame_img.png";
+// import hero from "../assets/frame_img.png";
 import "../index.css";
+import hero_video from "../assets/mondus-home-video.mp4";
 
 export default function Hero() {
   // const [selectedCurrency, setSelectedCurrency] = useState<
@@ -32,14 +33,24 @@ export default function Hero() {
 
   return (
     <div className="h-[50vh] md:h-[100vh] bg-black text-white flex flex-col pt-28 pb-10 md:pt-5 lg:flex-row items-center justify-between px-6 sm:px-10 relative overflow-hidden dark:bg-black dark:text-white">
-      {/* Background Image */}
-      <img
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-80"
+        src={hero_video}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+      />
+
+      {/* Fallback Image (optional, for very slow connections) */}
+      {/* <img
         src={hero}
         alt="Dubai Tower"
-        className="absolute inset-0 w-full object-cover opacity-70 z-0 h-[50vh] md:h-[100vh]"
-        style={{ background: "var(--bg-primary-gradient)" }}
+        className="absolute inset-0 w-full h-full object-cover opacity-70 z-0"
         draggable="false"
-      />
+      /> */}
 
       {/* Left Content */}
       <div className="font-raleway font-light relative z-10 w-full md:w-1/2  px-4  md:px-10 mb-8 lg:mb-0">

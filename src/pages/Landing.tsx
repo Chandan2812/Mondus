@@ -1,6 +1,7 @@
 import AboutSection from "../components/AboutSection";
 import AwardsSection from "../components/awards";
 import BuyRentSection from "../components/BuyRentSection";
+import DeveloperScroll from "../components/DeveloperScroll";
 import Exclusives from "../components/Exclusives";
 import RealEstateExperts from "../components/expert";
 // import FindYourPartner from "../components/FindYourPartner";
@@ -31,6 +32,7 @@ export const Landing = () => {
       <AwardsSection />
       <ReviewSection />
       <AboutSection />
+      <DeveloperScroll />
       {/* <LifeStyleSection /> */}
       {/* <RealStateInsights /> */}
       {/* <PromptConsultation /> */}

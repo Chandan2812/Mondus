@@ -17,6 +17,7 @@ import {
   LogOut,
   X,
   LandPlot,
+  TowerControl,
 } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -31,6 +32,11 @@ const AdminLayout = () => {
       icon: <LandPlot />,
       label: "Property Management",
       to: "property-management",
+    },
+    {
+      icon: <TowerControl />,
+      label: "Developer Management",
+      to: "developer-management",
     },
     { icon: <Mail />, label: "Newsletter", to: "/admin/newsletter" },
     { icon: <MailPlus />, label: "Emailer", to: "/admin/emailer" },

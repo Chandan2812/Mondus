@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const PromptConsultation = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -49,18 +51,15 @@ const PromptConsultation = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(
-        "https://mondus-backend.onrender.com/api/send-otp",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name,
-            email,
-            phone: fullPhone,
-          }),
-        },
-      );
+      const res = await fetch(`${API_BASE_URL}/api/send-otp`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: fullPhone,
+        }),
+      });
 
       const data = await res.json();
 

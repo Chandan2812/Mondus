@@ -1,8 +1,8 @@
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
 import image1 from "../assets/1.png";
-import image2 from "../assets/2.png";
-import image3 from "../assets/3.png";
+import image2 from "../assets/diksha-mondus.png";
+import image3 from "../assets/muskaan-mondus.png";
 import NotifyMe from "../components/NotifyMe";
 
 const About = () => {
@@ -67,7 +67,7 @@ const About = () => {
               <img
                 src={image2} // Replace with actual image URL
                 alt="Managing Director Diksha Khatri"
-                className="w-full h-[400px]  object-cover"
+                className="w-full h-[400px]  object-contain"
               />
             </div>
 
@@ -105,18 +105,19 @@ const About = () => {
             <div className="w-full md:w-1/2">
               <h3 className="text-2xl font-semibold mb-2">CEO</h3>
               <h4 className="text-xl font-medium mb-4 text-[var(--primary-color)]">
-                Hindustani Bhau
+                Muskaan
               </h4>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                As CEO of Mondus Properties, Hindustani Bhau brings an
-                unconventional yet impactful leadership style shaped by his
-                journey as a popular YouTuber and influencer. His bold presence
-                and authenticity translate into a dynamic business approach in
-                the real estate space. With a growing focus on real estate in
-                Dubai, he combines influence with strategic vision to guide the
-                company’s expansion. Bhau’s resilience and ability to thrive
-                under pressure make him a strong force in managing the
-                competitive Dubai property market.
+                As the CEO of Mondus Properties, Muskaan brings an
+                unconventional yet highly effective leadership style shaped by
+                his journey as a popular YouTuber and influencer. His bold
+                presence and authenticity translate into a dynamic and
+                forward-thinking approach to real estate. With a strong and
+                growing focus on the Dubai property market, he seamlessly blends
+                influence with strategic vision to drive the company’s
+                expansion. Muskaan’s resilience and ability to perform under
+                pressure position him as a powerful leader in navigating Dubai’s
+                highly competitive real estate landscape.
               </p>
             </div>
           </div>
