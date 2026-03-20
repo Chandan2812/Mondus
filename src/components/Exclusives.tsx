@@ -84,7 +84,7 @@ const Exclusives = () => {
     <section className="bg-white dark:bg-black text-black dark:text-white py-10 px-2 md:px-28 font-raleway font-thin custom-gradient-lines relative">
       <div className="mb-8">
         <h2 className="text-3xl md:text-4xl font-light mb-2 text-black dark:text-gray-100 md:text-center pl-6">
-          The Best of Dubai, Reserved for You.
+          Featured Properties in Dubai
         </h2>
         <p className="text-sm md:text-base pl-6 font-light dark:font-thin md:text-center">
           Step into a handpicked collection of properties, available only

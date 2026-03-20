@@ -26,17 +26,23 @@ const ListProperty = () => {
           {/* Right Side: Content */}
           <div className="w-full lg:w-1/2 font-raleway font-thin">
             <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100">
-              List Your Property
+              List Your Property with a Leading Real Estate Company in Dubai
             </h2>
             <p className="text-gray-800 font-light dark:font-thin dark:text-gray-200 mb-8 text-lg leading-relaxed text-justify">
-              Hunting for the best way to sell or rent your property in Dubai?
-              Mondus Properties makes the process simple as possible. If you own
-              an apartment for rent in Dubai or wish to sell it, our expert
-              support and trusted platform ensure your listing reaches serious
-              buyers and tenants quickly. Our team of experienced real estate
-              agents in Dubai offers highest exposure, smart pricing, and
-              qualified leads. List your property with Mondus Properties and
-              experience real estate done right from start to finish.
+              Partner with Mondus Properties, one of the leading real estate
+              companies in Dubai. Get qualified customers and tenants all over
+              the globe. Benefit from:
+            </p>
+            <ul className="mb-6 list-disc list-inside text-gray-800 font-light dark:font-thin dark:text-gray-200 text-lg leading-relaxed">
+              <li>Marketing of your own property professionally</li>
+              <li>Access to high net worth clients</li>
+              <li>Validated leads and hassle-free transactions</li>
+            </ul>
+
+            <p className="text-gray-800 font-medium dark:font-medium dark:text-gray-200 mb-8 text-lg leading-relaxed text-justify">
+              Listing with a Top real estate company in Dubai UAE ensures
+              maximum visibility, faster sales, and better returns on your
+              property.
             </p>
 
             <button

@@ -13,27 +13,27 @@ interface Review {
 
 const reviews: Review[] = [
   {
-    name: "RAJIV MEHTA",
+    name: "Ahmed, Dubai ",
     content:
-      "As a first-time buyer in Dubai, I was overwhelmed with choices. Mondus Properties helped me find the perfect apartment that I could dream of. Their team was patient and guided me through every step. I couldn’t have asked for a smoother experience.",
+      "“Mondus Properties is the best real estate company in Dubai. Transparent, professional, and trustworthy!”",
     rating: 5,
   },
   {
-    name: "LUCA ROMANO",
+    name: "Sarah, UK ",
     content:
-      "Listing my apartment for rent in Dubai with Mondus Properties was a hassle-free experience. Their team provided excellent guidance, and my property attracted serious tenants within days. Highly recommend their trusted service!",
+      "“Their property agents in Dubai guided me through off-plan investment with excellent results.”",
     rating: 4,
   },
   {
-    name: "OMAR KHAN",
+    name: "Mohammed, India ",
     content:
-      "Thanks to Mondus Properties, I sold my villa quickly and at a great price. Their real estate agents are professional and always available to answer my questions.",
+      "“Reliable service, verified listings, and great ROI. Highly recommended.”",
     rating: 5,
   },
   {
-    name: "ELENA PETROVA",
+    name: "ELENA PETROVA, France",
     content:
-      "I was worried about finding the right buyer for my property. But Mondus Properties made the whole process transparent and stress-free. Their platform gave my listing the biggest exposure and qualified leads.",
+      "Worried about finding the right buyer for my property. But they made the whole process stress-free.",
     rating: 5,
   },
 ];

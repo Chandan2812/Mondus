@@ -4,6 +4,7 @@ import BuyRentSection from "../components/BuyRentSection";
 import DeveloperScroll from "../components/DeveloperScroll";
 import Exclusives from "../components/Exclusives";
 import RealEstateExperts from "../components/expert";
+import FaqCtaSection from "../components/Faqctasection";
 // import FindYourPartner from "../components/FindYourPartner";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
@@ -12,6 +13,7 @@ import ListProperty from "../components/listproperty";
 import Navbar from "../components/Nav";
 import NewsSubscribeSection from "../components/NewsLetterSection";
 import NotifyMe from "../components/NotifyMe";
+import PropertySection from "../components/Propertysection";
 // import PromptConsultation from "../components/PromptConsultation";
 // import RealStateInsights from "../components/RealStateInsights";
 import ReviewSection from "../components/review";
@@ -24,15 +26,18 @@ export const Landing = () => {
       <Navbar />
       <Hero />
       <RealEstateExperts />
+      <PropertySection />
       <BuyRentSection />
       <Exclusives />
       {/* <FindYourPartner /> */}
+      <AboutSection />
       <WhatWeDoSection />
       <ListProperty />
+      <DeveloperScroll />
       <AwardsSection />
       <ReviewSection />
-      <AboutSection />
-      <DeveloperScroll />
+      <FaqCtaSection />
+
       {/* <LifeStyleSection /> */}
       {/* <RealStateInsights /> */}
       {/* <PromptConsultation /> */}

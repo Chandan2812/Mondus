@@ -35,7 +35,7 @@ function Contact() {
               <ContactItem
                 icon={<MapPin />}
                 label="Office"
-                content="Mondus Group Iris Bay 2402 , Business Bay , Dubai"
+                content="Stadium point tower - 305 office number - AI Hebiah Fourth - Dubai Sports City - Dubai"
                 href="https://www.google.com/maps/search/?api=1&query=Mondus+Group+Iris+Bay+2402+Business+Bay+Dubai"
               />
 

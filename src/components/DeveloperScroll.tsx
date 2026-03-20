@@ -49,14 +49,21 @@ const DeveloperScroll = () => {
 
   return (
     <div className="px-4 py-12 bg-white dark:bg-black text-black text-center custom-gradient-lines">
+      <p
+        className="text-xs tracking-[3px] uppercase font-semibold mb-3"
+        style={{ color: "var(--primary-color)" }}
+      >
+        Our Partners
+      </p>
       <h2 className="text-3xl md:text-4xl font-light mb-6 text-black dark:text-gray-100 text-center">
         Trusted Real Estate{" "}
         <span className="text-[var(--primary-color)]">Developers</span>
       </h2>
 
       <p className="text-center text-gray-400 max-w-2xl mx-auto text-sm md:text-base mb-6">
-        We collaborate with Dubai’s most reputable developers to offer premium,
-        high-return investment opportunities and world-class properties.
+        Mondus Properties collaborates with the most trusted developers in Dubai
+        to bring you premium, high-quality projects with strong investment
+        potential.
       </p>
 
       {/* Continuous Carousel */}

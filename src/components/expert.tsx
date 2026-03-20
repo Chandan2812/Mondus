@@ -49,9 +49,9 @@ const RealEstateExperts: React.FC = () => {
         {/* Text and stats */}
         <div className="mt-8 md:mt-0">
           <h2 className="text-3xl md:text-3xl font-light mb-6">
-            Secure Your Future with{" "}
+            Secure UAE Golden Visa Through{" "}
             <span className="text-[var(--primary-color)]">
-              UAE Golden Visa
+              Dubai Property Investment
             </span>{" "}
           </h2>
 
@@ -63,10 +63,18 @@ const RealEstateExperts: React.FC = () => {
             approvals, our experts ensure a smooth and stress-free experience.
             Whether you’re investing in luxury apartments, premium villas, or
             high-value developments by top UAE developers, we help you qualify
-            for long-term residency with confidence. As a trusted real estate
-            advisory in Dubai, Mondus Properties connects your property
-            investment with residency benefits—so you can live, invest, and grow
-            in the UAE with peace of mind.
+            for long-term residency with confidence. As a leading Real Estate
+            Company in Dubai UAE, Mondus Properties connects your property
+            investment with residency benefits, ensuring a seamless and legally
+            compliant process. Our experienced Property Agent in Dubai provides
+            personalized guidance, helping you choose the right investment that
+            meets Golden Visa eligibility criteria while maximizing returns. As
+            a trusted real estate advisory in Dubai, Mondus Properties connects
+            your property investment with residency benefits, so you can live,
+            invest, and grow in the UAE with peace of mind. With our expertise
+            as a Top real estate company in Dubai, we simplify complex
+            procedures and make your Golden Visa journey efficient, transparent,
+            and hassle-free.
           </p>
 
           <a href="/contact">
@@ -77,7 +85,7 @@ const RealEstateExperts: React.FC = () => {
         </div>
       </div>
       {/* Desktop stats */}
-      <div className="grid grid-cols-3 md:grid-cols-6 text-center gap-6 w-11/12 mx-auto">
+      {/* <div className="grid grid-cols-3 md:grid-cols-6 text-center gap-6 w-11/12 mx-auto">
         <div>
           <FaBuilding className="text-2xl mb-2 mx-auto text-[var(--primary-color)]" />
           <h3 className="text-2xl font-sans"> 8,000+</h3>
@@ -120,7 +128,7 @@ const RealEstateExperts: React.FC = () => {
             {"Real Estate \n Portfolio Value"}
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
