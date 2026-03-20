@@ -154,8 +154,6 @@
 
 "use client";
 
-import { useState } from "react";
-
 import {
   FaBuilding,
   FaGlobe,
@@ -166,8 +164,6 @@ import {
 } from "react-icons/fa";
 
 export default function AboutSection() {
-  const [expanded, setExpanded] = useState(false);
-
   return (
     <section className="bg-white dark:bg-black text-black dark:text-white px-6 py-12 md:py-20 flex justify-center relative overflow-hidden font-raleway font-light dark:font-thin">
       <div className="max-w-7xl w-full">
