@@ -36,6 +36,7 @@
     "react-slick": "^0.30.3",
     "react-slider": "^2.0.6",
     "react-toastify": "^11.0.5",
+    "sitemap": "^9.0.1",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.16",
     "swiper": "^11.2.6"
